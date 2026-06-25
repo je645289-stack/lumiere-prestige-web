@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextRequest, NextResponse } from "next/server";
 import { readData } from "@/lib/data";
 import type { Product } from "@/types";
