@@ -1,0 +1,68 @@
+[
+  {
+    "id": "svc-1",
+    "name": "Consultoría Premium",
+    "description": "Sesiones personalizadas de consultoría estratégica con expertos certificados. Análisis profundo de necesidades, plan de acción a medida y seguimiento continuo para maximizar resultados.",
+    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80",
+    "icon": "Briefcase",
+    "price": "Desde $2,500 MXN",
+    "enabled": true,
+    "order": 1,
+    "category": "Consultoría"
+  },
+  {
+    "id": "svc-2",
+    "name": "Experiencia Wellness",
+    "description": "Tratamientos integrales de bienestar que combinan técnicas avanzadas, aromaterapia premium y ambientes diseñados para la relajación total del cuerpo y la mente.",
+    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
+    "icon": "Sparkles",
+    "price": "Desde $1,800 MXN",
+    "enabled": true,
+    "order": 2,
+    "category": "Wellness"
+  },
+  {
+    "id": "svc-3",
+    "name": "Programa Elite",
+    "description": "Membresía exclusiva con acceso prioritario, descuentos especiales, eventos privados y un concierge personal disponible las 24 horas para atender todas tus necesidades.",
+    "image": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80",
+    "icon": "Crown",
+    "price": "Desde $8,500 MXN/mes",
+    "enabled": true,
+    "order": 3,
+    "category": "Membresías"
+  },
+  {
+    "id": "svc-4",
+    "name": "Transformación Integral",
+    "description": "Programa completo de 12 semanas que incluye evaluación inicial, plan personalizado, sesiones semanales y seguimiento de resultados con tecnología de vanguardia.",
+    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
+    "icon": "TrendingUp",
+    "price": "Desde $15,000 MXN",
+    "enabled": true,
+    "order": 4,
+    "category": "Programas"
+  },
+  {
+    "id": "svc-5",
+    "name": "Eventos Corporativos",
+    "description": "Organización de experiencias premium para empresas: team building de lujo, retiros ejecutivos y eventos de networking en espacios exclusivos con catering gourmet.",
+    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
+    "icon": "Users",
+    "price": "Cotización personalizada",
+    "enabled": true,
+    "order": 5,
+    "category": "Corporativo"
+  },
+  {
+    "id": "svc-6",
+    "name": "Asesoría VIP",
+    "description": "Servicio exclusivo one-on-one con acceso directo a nuestro director. Incluye visitas a domicilio, horarios flexibles y atención prioritaria sin lista de espera.",
+    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
+    "icon": "Star",
+    "price": "Desde $5,000 MXN",
+    "enabled": true,
+    "order": 6,
+    "category": "VIP"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "step-1",
+    "step": 1,
+    "title": "Consulta Inicial",
+    "description": "Agenda tu consulta gratuita donde nuestros expertos evalúan tus necesidades, objetivos y expectativas para diseñar la experiencia perfecta.",
+    "order": 1,
+    "enabled": true
+  },
+  {
+    "id": "step-2",
+    "step": 2,
+    "title": "Plan Personalizado",
+    "description": "Recibe un plan a medida con servicios, productos y cronograma optimizado para maximizar tus resultados de forma eficiente.",
+    "order": 2,
+    "enabled": true
+  },
+  {
+    "id": "step-3",
+    "step": 3,
+    "title": "Experiencia Premium",
+    "description": "Disfruta de tu servicio en nuestras instalaciones de lujo con atención dedicada de principio a fin por especialistas certificados.",
+    "order": 3,
+    "enabled": true
+  },
+  {
+    "id": "step-4",
+    "step": 4,
+    "title": "Seguimiento Continuo",
+    "description": "Monitoreamos tu progreso con check-ins regulares, ajustes al plan y soporte disponible para garantizar resultados duraderos.",
+    "order": 4,
+    "enabled": true
+  }
+]

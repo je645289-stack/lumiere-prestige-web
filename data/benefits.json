@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ben-1",
+    "title": "Atención Personalizada",
+    "description": "Cada cliente recibe un plan exclusivo diseñado por expertos según sus necesidades, objetivos y preferencias únicas.",
+    "icon": "UserCheck",
+    "order": 1,
+    "enabled": true
+  },
+  {
+    "id": "ben-2",
+    "title": "Resultados Garantizados",
+    "description": "Compromiso total con la satisfacción. Si no quedas satisfecho, trabajamos hasta lograr los resultados o reembolsamos.",
+    "icon": "ShieldCheck",
+    "order": 2,
+    "enabled": true
+  },
+  {
+    "id": "ben-3",
+    "title": "Tecnología de Vanguardia",
+    "description": "Equipamiento y técnicas de última generación importados directamente de los centros de innovación más avanzados del mundo.",
+    "icon": "Zap",
+    "order": 3,
+    "enabled": true
+  },
+  {
+    "id": "ben-4",
+    "title": "Ambiente Premium",
+    "description": "Instalaciones diseñadas por arquitectos de interiores de lujo para crear una experiencia sensorial incomparable.",
+    "icon": "Gem",
+    "order": 4,
+    "enabled": true
+  },
+  {
+    "id": "ben-5",
+    "title": "Flexibilidad Total",
+    "description": "Horarios extendidos, reservas en línea 24/7, servicio a domicilio VIP y cancelaciones flexibles sin complicaciones.",
+    "icon": "Clock",
+    "order": 5,
+    "enabled": true
+  },
+  {
+    "id": "ben-6",
+    "title": "Comunidad Exclusiva",
+    "description": "Acceso a eventos privados, networking con otros miembros premium y contenido exclusivo solo para clientes.",
+    "icon": "Users",
+    "order": 6,
+    "enabled": true
+  }
+]

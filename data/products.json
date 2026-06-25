@@ -1,0 +1,42 @@
+[
+  {
+    "id": "prod-3",
+    "name": "Membresía Anual Elite",
+    "description": "Acceso ilimitado a todos los servicios premium, eventos exclusivos, descuentos del 30% en productos y concierge personal durante 12 meses.",
+    "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80",
+    "price": "$89,000 MXN/año",
+    "category": "Membresías",
+    "enabled": true,
+    "order": 3
+  },
+  {
+    "id": "prod-4",
+    "name": "Gift Card Premium",
+    "description": "Tarjeta de regalo elegante disponible en montos de $1,000 a $50,000 MXN. El regalo perfecto para quienes aprecian la excelencia y el lujo.",
+    "image": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&q=80",
+    "price": "Desde $1,000 MXN",
+    "category": "Regalos",
+    "enabled": true,
+    "order": 4
+  },
+  {
+    "id": "prod-5",
+    "name": "Pack Corporativo",
+    "description": "Paquete diseñado para empresas con 10 sesiones de consultoría, reportes ejecutivos y acceso a nuestra plataforma de bienestar corporativo.",
+    "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80",
+    "price": "$45,000 MXN",
+    "category": "Corporativo",
+    "enabled": true,
+    "order": 5
+  },
+  {
+    "id": "prod-6",
+    "name": "Experiencia Signature",
+    "description": "Experiencia de un día completo con todos los servicios premium incluidos, almuerzo gourmet, regalo de bienvenida y sesión de fotografía profesional.",
+    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+    "price": "$12,500 MXN",
+    "category": "Experiencias",
+    "enabled": true,
+    "order": 6
+  }
+]
