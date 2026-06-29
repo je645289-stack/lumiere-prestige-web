@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 import { readData, writeData, uploadImage } from "@/lib/data";
 import type { ContentType } from "@/types";
+
+// CMS persistence relies on KV / filesystem access, so it must run on the
+// Node.js runtime (not Edge).
+export const runtime = "nodejs";
 
 const VALID_TYPES: ContentType[] = [
   "site-config",
@@ -51,6 +56,10 @@ export async function PUT(
   try {
     const body = await request.json();
     await writeData(type as ContentType, body);
+
+    // Invalidate the cached pages so changes are visible immediately.
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Error al guardar" }, { status: 500 });
