@@ -24,10 +24,10 @@ Premium, bilingual (English / Spanish) website for **Albert Auto Detailing** —
 ```bash
 npm install
 cp .env.example .env.local   # already created with defaults
-npm run dev                  # http://localhost:3000
+npm run dev                  # http://localhost:3100
 ```
 
-Open the admin panel at [http://localhost:3000/admin](http://localhost:3000/admin):
+Open the admin panel at [http://localhost:3100/admin](http://localhost:3100/admin):
 
 - Email: `admin@albertautodetailing.com`
 - Password: `Albert2024!Admin` (set via `ADMIN_PASSWORD` in `.env.local`)
@@ -36,7 +36,7 @@ Open the admin panel at [http://localhost:3000/admin](http://localhost:3000/admi
 
 | Script | Description |
 | --- | --- |
-| `npm run dev` | Start the dev server on port 3000 |
+| `npm run dev` | Start the dev server on port 3100 |
 | `npm run build` | Production build |
 | `npm run start` | Run the production build |
 | `npm run pages:build` | Build for Cloudflare Pages (OpenNext) |
