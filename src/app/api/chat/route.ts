@@ -1,65 +1,67 @@
-export const runtime = 'edge';
-import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
-export async function POST(request: NextRequest) {
-  try {
-    const { message } = await request.json();
+const DATA_DIR = path.join(process.cwd(), "data");
 
-    if (!message?.trim()) {
-      return NextResponse.json({ error: "Mensaje vacío" }, { status: 400 });
+const r2Store = new Map<string, { data: ArrayBuffer; contentType: string }>();
+
+function keyToFilename(key: string): string {
+  return key.replace(/^cms:/, "") + ".json";
+}
+
+export const memoryKV = {
+  async get(key: string): Promise<string | null> {
+    try {
+      const filePath = path.join(DATA_DIR, keyToFilename(key));
+      if (!fs.existsSync(filePath)) return null;
+      return fs.readFileSync(filePath, "utf-8");
+    } catch {
+      return null;
     }
-
-    const apiKey = process.env.OPENAI_API_KEY;
-
-    if (!apiKey) {
-      const autoReplies: Record<string, string> = {
-        horario: "Nuestro horario es de Lunes a Viernes 9AM-8PM, Sábado 10AM-6PM, Domingo 11AM-4PM.",
-        precio: "Los precios varían según el servicio. Visita nuestro catálogo o contáctanos para una cotización.",
-        reservar: "Puedes reservar desde la sección de contacto o por WhatsApp.",
-        ubicacion: "Estamos en Av. Presidente Masaryk 123, Polanco, Ciudad de México.",
-      };
-
-      const lower = message.toLowerCase();
-      for (const [key, reply] of Object.entries(autoReplies)) {
-        if (lower.includes(key)) {
-          return NextResponse.json({ reply });
-        }
-      }
-
-      return NextResponse.json({
-        reply: "Gracias por tu mensaje. Un especialista te contactará pronto. También puedes escribirnos por WhatsApp.",
-      });
+  },
+  async put(key: string, value: string): Promise<void> {
+    try {
+      if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+      const filePath = path.join(DATA_DIR, keyToFilename(key));
+      fs.writeFileSync(filePath, value, "utf-8");
+    } catch {
+      // silently fail
     }
+  },
+  async delete(key: string): Promise<void> {
+    try {
+      const filePath = path.join(DATA_DIR, keyToFilename(key));
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    } catch {
+      // silently fail
+    }
+  },
+};
 
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Eres el asistente virtual de Lumière Prestige, un negocio premium de servicios de lujo. Responde de forma profesional, elegante y concisa en español.",
-          },
-          { role: "user", content: message },
-        ],
-        max_tokens: 300,
-      }),
+export const memoryR2 = {
+  async put(
+    key: string,
+    value: ArrayBuffer | ReadableStream,
+    options?: { httpMetadata?: { contentType?: string } }
+  ): Promise<void> {
+    const buffer =
+      value instanceof ArrayBuffer
+        ? value
+        : await new Response(value).arrayBuffer();
+    r2Store.set(key, {
+      data: buffer,
+      contentType: options?.httpMetadata?.contentType ?? "application/octet-stream",
     });
+  },
+  async get(key: string): Promise<{ body: ArrayBuffer; contentType: string } | null> {
+    const entry = r2Store.get(key);
+    if (!entry) return null;
+    return { body: entry.data, contentType: entry.contentType };
+  },
+};
 
-    const data = await res.json();
-    const reply =
-      data.choices?.[0]?.message?.content ||
-      "Gracias por tu mensaje. Te responderemos a la brevedad.";
-
-    return NextResponse.json({ reply });
-  } catch {
-    return NextResponse.json({
-      reply: "Gracias por tu mensaje. Te contactaremos pronto.",
-    });
-  }
+export function isMemoryKV(
+  kv: KVNamespace | typeof memoryKV
+): kv is typeof memoryKV {
+  return kv === memoryKV;
 }

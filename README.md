@@ -41,13 +41,15 @@ Abre [http://localhost:3000](http://localhost:3000)
 ## Estructura del proyecto
 
 ```
-├── data/                  # Contenido editable (JSON)
-├── public/uploads/        # Imágenes subidas
+├── data/                  # Contenido inicial (defaults embebidos en build)
+├── src/lib/storage/       # KV + R2 (sin fs/path)
+├── wrangler.jsonc         # Bindings Cloudflare (CMS_KV, CMS_R2)
+├── open-next.config.ts    # Adapter OpenNext para Cloudflare
 ├── src/
 │   ├── app/               # Páginas y API routes
 │   ├── components/        # UI, secciones, admin
 │   └── lib/               # Utilidades, auth, SEO
-└── docs/                  # Manual de capacitación
+└── docs/                  # Manual de capacitación + Cloudflare
 ```
 
 ## Páginas públicas
@@ -89,12 +91,26 @@ NEXT_PUBLIC_AI_ASSISTANT_ENABLED=true
 
 ## Despliegue
 
-Recomendado: [Vercel](https://vercel.com)
+### Cloudflare Pages (recomendado)
+
+Compatible con Edge Runtime — usa **KV** para contenido y **R2** para imágenes.
+
+```bash
+npm run pages:build    # Build para Cloudflare
+npm run pages:preview  # Preview local con Wrangler
+npm run pages:deploy   # Deploy a Cloudflare Workers/Pages
+```
+
+Ver guía completa: [`docs/CLOUDFLARE.md`](docs/CLOUDFLARE.md)
+
+### Vercel / Node.js tradicional
 
 ```bash
 npm run build
 npm start
 ```
+
+> En Vercel sin KV/R2, el proyecto usa almacenamiento en memoria en dev. Para producción persistente en Vercel, configura Upstash KV o despliega en Cloudflare.
 
 ## Soporte
 

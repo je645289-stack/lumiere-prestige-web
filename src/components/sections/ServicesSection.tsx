@@ -1,79 +1,40 @@
-import Image from "next/image";
+"use client";
+
 import type { LucideIcon } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import type { Service, SiteConfig } from "@/types";
-import { getWhatsAppLink } from "@/lib/utils";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import type { Service } from "@/types";
 
 function getIcon(name: string) {
   const Icon = (Icons as unknown as Record<string, LucideIcon>)[name];
   return Icon ? <Icon className="h-6 w-6" /> : <Icons.Star className="h-6 w-6" />;
 }
 
-export function ServicesSection({
-  services,
-  config,
-}: {
-  services: Service[];
-  config: SiteConfig;
-}) {
-  return (
-    <Section id="servicios">
-      <SectionHeader
-        title="Nuestros Servicios"
-        subtitle="Experiencias premium diseñadas para superar tus expectativas"
-      />
+export function ServicesSection({ services }: { services: Service[] }) {
+  const { t } = useLanguage();
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  return (
+    <Section id="servicios" className="bg-brand-light">
+      <SectionHeader label={t("services.label")} title={t("services.title")} light />
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
-          <Card key={service.id} className="flex flex-col">
-            <div className="relative mb-4 aspect-video overflow-hidden rounded-md">
-              <Image
-                src={service.image}
-                alt={service.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-            <div className="mb-2 flex items-center gap-2 text-brand-gold">
+          <div
+            key={service.id}
+            className="group rounded border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-red/30 hover:shadow-md"
+          >
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded bg-brand-red/10 text-brand-red transition-colors group-hover:bg-brand-red group-hover:text-white">
               {getIcon(service.icon)}
-              <span className="text-xs uppercase tracking-wider">{service.category}</span>
             </div>
-            <h3 className="font-display text-xl font-semibold text-brand-cream">
+            <h3 className="font-sans text-sm font-bold uppercase tracking-wide text-brand-dark">
               {service.name}
             </h3>
-            <p className="mt-2 flex-1 text-sm text-brand-muted leading-relaxed">
+            <p className="mt-3 text-sm leading-relaxed text-brand-light-muted">
               {service.description}
             </p>
-            {service.price && (
-              <p className="mt-3 font-semibold text-brand-gold">{service.price}</p>
-            )}
-            <div className="mt-4 flex gap-2">
-              <Button
-                href={getWhatsAppLink(
-                  config.contact.whatsapp,
-                  `Hola, me interesa el servicio: ${service.name}`
-                )}
-                size="sm"
-                className="flex-1"
-              >
-                Reservar
-              </Button>
-              <Button href="#contacto" variant="outline" size="sm" className="flex-1">
-                Cotizar
-              </Button>
-            </div>
-          </Card>
+          </div>
         ))}
-      </div>
-
-      <div className="mt-10 text-center">
-        <Button href="/servicios" variant="secondary">
-          Ver todos los servicios
-        </Button>
       </div>
     </Section>
   );

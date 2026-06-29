@@ -6,7 +6,10 @@ import { isPaymentsEnabled, PAYMENT_PROVIDERS } from "@/lib/payments";
 
 export async function POST(request: NextRequest) {
   try {
-    const { productId, provider } = await request.json();
+    const { productId, provider } = (await request.json()) as {
+      productId?: string;
+      provider?: string;
+    };
 
     const products = await readData<Product[]>("products");
     const product = products.find((p) => p.id === productId);

@@ -2,33 +2,57 @@
   {
     "id": "step-1",
     "step": 1,
-    "title": "Consulta Inicial",
-    "description": "Agenda tu consulta gratuita donde nuestros expertos evalúan tus necesidades, objetivos y expectativas para diseñar la experiencia perfecta.",
+    "title": "Request Info",
+    "description": "Contact us via WhatsApp, phone, or the quote form.",
     "order": 1,
     "enabled": true
   },
   {
     "id": "step-2",
     "step": 2,
-    "title": "Plan Personalizado",
-    "description": "Recibe un plan a medida con servicios, productos y cronograma optimizado para maximizar tus resultados de forma eficiente.",
+    "title": "Vehicle Details",
+    "description": "Share your vehicle's make, model, year, and current condition.",
     "order": 2,
     "enabled": true
   },
   {
     "id": "step-3",
     "step": 3,
-    "title": "Experiencia Premium",
-    "description": "Disfruta de tu servicio en nuestras instalaciones de lujo con atención dedicada de principio a fin por especialistas certificados.",
+    "title": "Choose a Service",
+    "description": "Select the detailing package or service that best fits your needs.",
     "order": 3,
     "enabled": true
   },
   {
     "id": "step-4",
     "step": 4,
-    "title": "Seguimiento Continuo",
-    "description": "Monitoreamos tu progreso con check-ins regulares, ajustes al plan y soporte disponible para garantizar resultados duraderos.",
+    "title": "Get Your Quote",
+    "description": "We'll send you a personalized quote — no hidden fees.",
     "order": 4,
+    "enabled": true
+  },
+  {
+    "id": "step-5",
+    "step": 5,
+    "title": "Confirm Your Appointment",
+    "description": "Pick a date and time that works for you.",
+    "order": 5,
+    "enabled": true
+  },
+  {
+    "id": "step-6",
+    "step": 6,
+    "title": "We Do the Work",
+    "description": "Our team performs the service with premium products and attention to every detail.",
+    "order": 6,
+    "enabled": true
+  },
+  {
+    "id": "step-7",
+    "step": 7,
+    "title": "Pick Up Your Vehicle",
+    "description": "Enjoy a spotless, professionally detailed vehicle, ready to impress.",
+    "order": 7,
     "enabled": true
   }
 ]

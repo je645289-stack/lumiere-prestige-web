@@ -1,50 +1,58 @@
 [
   {
     "id": "ben-1",
-    "title": "Atención Personalizada",
-    "description": "Cada cliente recibe un plan exclusivo diseñado por expertos según sus necesidades, objetivos y preferencias únicas.",
-    "icon": "UserCheck",
+    "title": "Premium detailing services",
+    "description": "",
+    "icon": "Award",
     "order": 1,
     "enabled": true
   },
   {
     "id": "ben-2",
-    "title": "Resultados Garantizados",
-    "description": "Compromiso total con la satisfacción. Si no quedas satisfecho, trabajamos hasta lograr los resultados o reembolsamos.",
-    "icon": "ShieldCheck",
+    "title": "Attention to every detail",
+    "description": "",
+    "icon": "Search",
     "order": 2,
     "enabled": true
   },
   {
     "id": "ben-3",
-    "title": "Tecnología de Vanguardia",
-    "description": "Equipamiento y técnicas de última generación importados directamente de los centros de innovación más avanzados del mundo.",
-    "icon": "Zap",
+    "title": "Mobile service available",
+    "description": "",
+    "icon": "Truck",
     "order": 3,
     "enabled": true
   },
   {
     "id": "ben-4",
-    "title": "Ambiente Premium",
-    "description": "Instalaciones diseñadas por arquitectos de interiores de lujo para crear una experiencia sensorial incomparable.",
-    "icon": "Gem",
+    "title": "Professional results",
+    "description": "",
+    "icon": "BadgeCheck",
     "order": 4,
     "enabled": true
   },
   {
     "id": "ben-5",
-    "title": "Flexibilidad Total",
-    "description": "Horarios extendidos, reservas en línea 24/7, servicio a domicilio VIP y cancelaciones flexibles sin complicaciones.",
-    "icon": "Clock",
+    "title": "Interior and exterior care",
+    "description": "",
+    "icon": "Car",
     "order": 5,
     "enabled": true
   },
   {
     "id": "ben-6",
-    "title": "Comunidad Exclusiva",
-    "description": "Acceso a eventos privados, networking con otros miembros premium y contenido exclusivo solo para clientes.",
-    "icon": "Users",
+    "title": "Quality products used",
+    "description": "",
+    "icon": "Package",
     "order": 6,
+    "enabled": true
+  },
+  {
+    "id": "ben-7",
+    "title": "Customer satisfaction focused",
+    "description": "",
+    "icon": "Heart",
+    "order": 7,
     "enabled": true
   }
 ]

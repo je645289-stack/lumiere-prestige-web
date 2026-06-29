@@ -1,208 +1,273 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Mail,
   Phone,
-  MapPin,
-  Clock,
   MessageCircle,
   Send,
   Instagram,
-  Facebook,
-  Linkedin,
+  ArrowRight,
 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import type { SiteConfig } from "@/types";
-import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import type { Service, SiteConfig } from "@/types";
+import { resolveContact } from "@/data/contact";
+import { getDefaultWhatsAppLink, getPhoneLink, getWhatsAppLink, externalLinkProps } from "@/lib/utils";
 
-export function ContactSection({ config }: { config: SiteConfig }) {
+const YEAR_OPTIONS = Array.from({ length: 35 }, (_, i) => 2026 - i);
+
+export function ContactSection({
+  config,
+  services,
+}: {
+  config: SiteConfig;
+  services: Service[];
+}) {
+  const { locale, t } = useLanguage();
+  const contact = config.contact;
   const [form, setForm] = useState({
     name: "",
-    email: "",
     phone: "",
+    email: "",
+    make: "",
+    model: "",
+    year: "",
     service: "",
+    date: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setForm({ name: "", email: "", phone: "", service: "", message: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+  const serviceOptions = useMemo(() => {
+    const names = services.map((s) => s.name);
+    return [...names, t("contact.otherService")];
+  }, [services, t]);
+
+  const buildWhatsAppMessage = () => {
+    const isEs = locale === "es";
+    const lines = [
+      t("contact.formIntro"),
+      "",
+      `${isEs ? "Nombre" : "Name"}: ${form.name}`,
+      `${isEs ? "Teléfono" : "Phone"}: ${form.phone}`,
+      `${isEs ? "Email" : "Email"}: ${form.email}`,
+      `${isEs ? "Vehículo" : "Vehicle"}: ${form.year} ${form.make} ${form.model}`,
+      `${isEs ? "Servicio" : "Service"}: ${form.service}`,
+      form.date
+        ? `${isEs ? "Fecha preferida" : "Preferred Date"}: ${form.date}`
+        : "",
+      form.message ? `${isEs ? "Mensaje" : "Message"}: ${form.message}` : "",
+    ].filter(Boolean);
+    return lines.join("\n");
   };
 
-  return (
-    <Section id="contacto">
-      <SectionHeader
-        title="Contacto"
-        subtitle="Estamos listos para atenderte. Escríbenos, llámanos o visita nuestras instalaciones."
-      />
+  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const url = getWhatsAppLink(buildWhatsAppMessage(), contact);
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
-      <div className="grid gap-12 lg:grid-cols-2">
-        <div>
-          <form onSubmit={handleSubmit} className="space-y-4">
+  const contactCards = [
+    {
+      icon: MessageCircle,
+      label: t("contact.whatsappCard"),
+      action: t("contact.whatsappAction"),
+      href: getDefaultWhatsAppLink(contact),
+      external: false,
+    },
+    {
+      icon: Phone,
+      label: t("contact.callCard"),
+      action: t("contact.callAction"),
+      href: getPhoneLink(contact),
+      external: false,
+    },
+    {
+      icon: Mail,
+      label: t("contact.emailCard"),
+      action: t("contact.emailAction"),
+      href: `mailto:${config.contact.email}`,
+      external: false,
+    },
+    {
+      icon: Instagram,
+      label: t("contact.instagramCard"),
+      action: t("contact.instagramAction"),
+      href: config.social.instagram,
+      external: true,
+    },
+  ];
+
+  return (
+    <>
+      <Section id="contacto" className="bg-brand-light">
+        <SectionHeader
+          label={t("contact.quoteLabel")}
+          title={config.cta.title}
+          subtitle={config.cta.subtitle}
+          light
+        />
+
+        <form onSubmit={handleWhatsAppSubmit} className="mx-auto max-w-2xl space-y-5">
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+              {t("contact.fullName")}
+            </label>
+            <input
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+              placeholder={locale === "es" ? "Juan Pérez" : "John Smith"}
+            />
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm text-brand-muted">Nombre completo *</label>
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+                {t("contact.phone")}
+              </label>
               <input
                 required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                placeholder="Tu nombre"
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+                placeholder={resolveContact(contact).phoneDisplay}
               />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label className="mb-1 block text-sm text-brand-muted">Email *</label>
-                <input
-                  required
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                  placeholder="tu@email.com"
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-sm text-brand-muted">Teléfono</label>
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                  placeholder="+52 55 1234 5678"
-                />
-              </div>
-            </div>
             <div>
-              <label className="mb-1 block text-sm text-brand-muted">Servicio de interés</label>
-              <select
-                value={form.service}
-                onChange={(e) => setForm({ ...form, service: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-              >
-                <option value="">Seleccionar servicio</option>
-                <option value="consultoria">Consultoría Premium</option>
-                <option value="wellness">Experiencia Wellness</option>
-                <option value="elite">Programa Elite</option>
-                <option value="transformacion">Transformación Integral</option>
-                <option value="corporativo">Eventos Corporativos</option>
-                <option value="vip">Asesoría VIP</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-brand-muted">Mensaje *</label>
-              <textarea
-                required
-                rows={4}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none resize-none"
-                placeholder="Cuéntanos cómo podemos ayudarte..."
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+                {t("contact.email")}
+              </label>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+                placeholder="you@email.com"
               />
-            </div>
-
-            <Button type="submit" disabled={status === "loading"} className="w-full">
-              <Send className="h-4 w-4" />
-              {status === "loading" ? "Enviando..." : "Enviar formulario"}
-            </Button>
-
-            {status === "success" && (
-              <p className="text-center text-sm text-green-400">
-                ¡Mensaje enviado! Te contactaremos pronto.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="text-center text-sm text-red-400">
-                Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.
-              </p>
-            )}
-          </form>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button
-              href={getWhatsAppLink(config.contact.whatsapp)}
-              variant="secondary"
-              size="sm"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </Button>
-            <Button href={getPhoneLink(config.contact.phone)} variant="outline" size="sm">
-              <Phone className="h-4 w-4" /> Llamar
-            </Button>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          {[
-            { icon: MapPin, label: "Dirección", value: `${config.contact.address}, ${config.contact.city}, ${config.contact.country}` },
-            { icon: Phone, label: "Teléfono", value: config.contact.phone, href: getPhoneLink(config.contact.phone) },
-            { icon: Mail, label: "Email", value: config.contact.email, href: `mailto:${config.contact.email}` },
-          ].map((item) => (
-            <div key={item.label} className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
-                <item.icon className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm text-brand-muted">{item.label}</p>
-                {item.href ? (
-                  <a href={item.href} className="text-brand-cream hover:text-brand-gold transition-colors">
-                    {item.value}
-                  </a>
-                ) : (
-                  <p className="text-brand-cream">{item.value}</p>
-                )}
-              </div>
-            </div>
-          ))}
-
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
-              <Clock className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm text-brand-muted">Horario</p>
-              {config.contact.schedule.map((s) => (
-                <p key={s.day} className="text-brand-cream text-sm">
-                  <span className="text-brand-muted">{s.day}:</span> {s.hours}
-                </p>
-              ))}
             </div>
           </div>
 
           <div>
-            <p className="mb-3 text-sm text-brand-muted">Síguenos</p>
-            <div className="flex gap-4">
-              <a href={config.social.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href={config.social.facebook} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
-                <Linkedin className="h-5 w-5" />
-              </a>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+              {t("contact.vehicleInfo")}
+            </label>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <input
+                required
+                value={form.make}
+                onChange={(e) => setForm({ ...form, make: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+                placeholder={t("contact.make")}
+              />
+              <input
+                required
+                value={form.model}
+                onChange={(e) => setForm({ ...form, model: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+                placeholder={t("contact.model")}
+              />
+              <select
+                value={form.year}
+                onChange={(e) => setForm({ ...form, year: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+              >
+                <option value="">{t("contact.year")}</option>
+                {YEAR_OPTIONS.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+                {t("contact.service")}
+              </label>
+              <select
+                required
+                value={form.service}
+                onChange={(e) => setForm({ ...form, service: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+              >
+                <option value="">{t("contact.selectService")}</option>
+                {serviceOptions.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+                {t("contact.preferredDate")}
+              </label>
+              <input
+                type="date"
+                value={form.date}
+                onChange={(e) => setForm({ ...form, date: e.target.value })}
+                className="input-field border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-brand-dark">
+              {t("contact.message")}
+            </label>
+            <textarea
+              rows={4}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              className="input-field resize-none border-gray-300 bg-white text-brand-dark focus:border-brand-red"
+              placeholder={t("contact.messagePlaceholder")}
+            />
+          </div>
+
+          <Button type="submit" size="lg" className="w-full">
+            <Send className="h-4 w-4" />
+            {t("contact.sendWhatsApp")}
+          </Button>
+
+          <p className="text-center text-xs text-brand-light-muted">{t("contact.submitNote")}</p>
+        </form>
+      </Section>
+
+      <Section id="cita" className="bg-brand-dark">
+        <SectionHeader
+          label={t("contact.touchLabel")}
+          title={t("contact.bookTitle")}
+          subtitle={t("contact.bookSubtitle")}
+        />
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {contactCards.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : externalLinkProps(item.href))}
+              className="group rounded border border-brand-border bg-brand-navy/50 p-6 text-center transition-all hover:border-brand-red/40 hover:bg-brand-navy"
+            >
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-red/10 text-brand-red transition-colors group-hover:bg-brand-red group-hover:text-white">
+                <item.icon className="h-5 w-5" />
+              </div>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-brand-cream">
+                {item.label}
+              </h4>
+              <p className="mt-2 flex items-center justify-center gap-1 text-xs text-brand-red">
+                {item.action}
+                <ArrowRight className="h-3 w-3" />
+              </p>
+            </a>
+          ))}
         </div>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }

@@ -7,11 +7,14 @@ import {
   SaveBar,
   AdminInput,
   AdminToggle,
-  saveContent,
   ImageUpload,
+  loadAdminContent,
+  createAdminSaveHandler,
 } from "@/components/admin/AdminForm";
 import { Button } from "@/components/ui/Button";
 import { generateId } from "@/lib/utils";
+
+import type { ContentType } from "@/types";
 
 type FieldDef = {
   key: string;
@@ -21,7 +24,7 @@ type FieldDef = {
 };
 
 interface GenericAdminProps {
-  contentType: string;
+  contentType: ContentType;
   title: string;
   description: string;
   fields: FieldDef[];
@@ -40,9 +43,7 @@ export function GenericListAdmin({
   const [items, setItems] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
-    fetch(`/api/content/${contentType}`)
-      .then((r) => r.json())
-      .then(setItems);
+    loadAdminContent<Record<string, unknown>[]>(contentType).then(setItems);
   }, [contentType]);
 
   const addItem = () => {
@@ -68,7 +69,10 @@ export function GenericListAdmin({
     <div className="flex min-h-screen bg-brand-dark">
       <AdminSidebar />
       <main className="ml-64 flex-1 p-8">
-        <SaveBar onSave={() => saveContent(contentType, items)} />
+        <SaveBar
+          onSave={createAdminSaveHandler(contentType, () => items, setItems)}
+          contentType={contentType}
+        />
 
         <div className="mb-6 flex items-center justify-between">
           <div>

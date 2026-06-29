@@ -1,8 +1,6 @@
-export const runtime = 'edge';
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { createSession, setSessionCookie } from "@/lib/auth";
-import { verifyPassword } from "@/lib/auth-server";
+import { createSession, setSessionCookie, clearSessionCookie } from "@/lib/auth";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -17,16 +15,7 @@ export async function POST(request: NextRequest) {
     const adminEmail = process.env.ADMIN_EMAIL || "admin@lumiereprestige.com";
     const adminPassword = process.env.ADMIN_PASSWORD || "Admin123!ChangeMe";
 
-    if (email !== adminEmail) {
-      return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 });
-    }
-
-    const isPlainMatch = password === adminPassword;
-    const isHashMatch = adminPassword.startsWith("$2")
-      ? await verifyPassword(password, adminPassword)
-      : false;
-
-    if (!isPlainMatch && !isHashMatch) {
+    if (email !== adminEmail || password !== adminPassword) {
       return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 });
     }
 
@@ -40,7 +29,6 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE() {
-  const { clearSessionCookie } = await import("@/lib/auth");
   await clearSessionCookie();
   return NextResponse.json({ success: true });
 }

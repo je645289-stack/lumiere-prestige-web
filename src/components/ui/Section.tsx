@@ -10,7 +10,7 @@ interface SectionProps {
 
 export function Section({ id, children, className, containerClassName }: SectionProps) {
   return (
-    <section id={id} className={cn("py-20 md:py-28", className)}>
+    <section id={id} className={cn("py-16 md:py-24", className)}>
       <div className={cn("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", containerClassName)}>
         {children}
       </div>
@@ -19,26 +19,51 @@ export function Section({ id, children, className, containerClassName }: Section
 }
 
 interface SectionHeaderProps {
+  label?: string;
   title: string;
   subtitle?: string;
   centered?: boolean;
+  light?: boolean;
   className?: string;
 }
 
 export function SectionHeader({
+  label,
   title,
   subtitle,
   centered = true,
+  light = false,
   className,
 }: SectionHeaderProps) {
   return (
-    <div className={cn(centered && "text-center", "mb-16", className)}>
-      <div className="mb-4 inline-block h-px w-12 bg-brand-gold" />
-      <h2 className="font-display text-3xl font-bold tracking-tight text-brand-cream md:text-4xl lg:text-5xl">
+    <div className={cn(centered && "text-center", "mb-12 md:mb-16", className)}>
+      {label && (
+        <p className={cn("section-label mb-3", centered && "mx-auto")}>{label}</p>
+      )}
+      <h2
+        className={cn(
+          light ? "section-title-light" : "section-title",
+          !centered && "text-left"
+        )}
+      >
         {title}
       </h2>
+      <div
+        className={cn(
+          "section-accent-line",
+          !centered && "section-accent-line-left mx-0"
+        )}
+      />
       {subtitle && (
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-muted">{subtitle}</p>
+        <p
+          className={cn(
+            "mt-4 max-w-2xl text-base leading-relaxed",
+            light ? "text-brand-light-muted" : "text-brand-muted",
+            centered && "mx-auto"
+          )}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );

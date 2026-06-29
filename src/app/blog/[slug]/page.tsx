@@ -7,7 +7,6 @@ import { buildMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingButtons } from "@/components/integrations/FloatingButtons";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { notFound } from "next/navigation";
@@ -81,7 +80,6 @@ export default async function BlogPostPage({ params }: Props) {
         </Section>
       </main>
       <Footer config={data.config} />
-      <FloatingButtons config={data.config} />
     </>
   );
 }

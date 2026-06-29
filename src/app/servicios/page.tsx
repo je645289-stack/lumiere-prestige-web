@@ -6,11 +6,12 @@ import { getSiteData } from "@/lib/site-data";
 import { buildMetadata } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingButtons } from "@/components/integrations/FloatingButtons";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getDefaultWhatsAppLink } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getSiteData();
@@ -23,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ServiciosPage() {
   const data = await getSiteData();
+  const contact = data.config.contact;
 
   return (
     <>
@@ -51,13 +53,10 @@ export default async function ServiciosPage() {
                   <p className="mt-3 text-brand-muted leading-relaxed">{service.description}</p>
                   {service.price && <p className="mt-3 font-semibold text-brand-gold">{service.price}</p>}
                   <div className="mt-4 flex gap-2">
-                    <Button
-                      href={getWhatsAppLink(data.config.contact.whatsapp, `Me interesa: ${service.name}`)}
-                      size="sm"
-                    >
+                    <Button href={getDefaultWhatsAppLink(contact)} size="sm">
                       Reservar
                     </Button>
-                    <Button href="/#contacto" variant="outline" size="sm">
+                    <Button href={getDefaultWhatsAppLink(contact)} variant="outline" size="sm">
                       Cotizar
                     </Button>
                   </div>
@@ -68,7 +67,6 @@ export default async function ServiciosPage() {
         </Section>
       </main>
       <Footer config={data.config} />
-      <FloatingButtons config={data.config} />
     </>
   );
 }

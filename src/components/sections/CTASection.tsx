@@ -1,14 +1,13 @@
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import type { SiteConfig } from "@/types";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getDefaultWhatsAppLink, resolveContactHref } from "@/lib/utils";
 
 export function CTASection({ config }: { config: SiteConfig }) {
   const { cta } = config;
-  const secondaryHref =
-    cta.secondaryButton.href === "whatsapp"
-      ? getWhatsAppLink(config.contact.whatsapp, "Hola, quiero agendar una consulta.")
-      : cta.secondaryButton.href;
+  const contact = config.contact;
+  const primaryHref = resolveContactHref(cta.primaryButton.href, contact);
+  const secondaryHref = resolveContactHref(cta.secondaryButton.href, contact);
 
   return (
     <Section id="cta-final" className="relative overflow-hidden">
@@ -19,7 +18,7 @@ export function CTASection({ config }: { config: SiteConfig }) {
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-muted">{cta.subtitle}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button href={cta.primaryButton.href} size="lg">
+          <Button href={primaryHref} size="lg">
             {cta.primaryButton.text}
           </Button>
           <Button href={secondaryHref} variant="secondary" size="lg">

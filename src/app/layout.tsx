@@ -1,21 +1,37 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Montserrat, Cormorant_Garamond, Cinzel } from "next/font/google";
 import "./globals.css";
 import { getSiteData } from "@/lib/site-data";
 import { buildMetadata, buildLocalBusinessSchema } from "@/lib/seo";
 import { AnalyticsScripts } from "@/components/integrations/AnalyticsScripts";
+import { ChatAssistantRoot } from "@/components/integrations/ChatAssistantRoot";
+import { AdminOverlay } from "@/components/admin/AdminOverlay";
+import { ContentSyncListener } from "@/components/admin/ContentSyncListener";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
   display: "swap",
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
 });
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  display: "swap",
+  weight: ["500", "600", "700"],
+});
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getSiteData();
@@ -31,7 +47,7 @@ export default async function RootLayout({
   const schema = buildLocalBusinessSchema(config);
 
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${cormorant.variable} ${cinzel.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -39,8 +55,13 @@ export default async function RootLayout({
         />
       </head>
       <body className="font-sans">
-        <AnalyticsScripts config={config} />
-        {children}
+        <LanguageProvider>
+          <ContentSyncListener />
+          <AnalyticsScripts config={config} />
+          {children}
+          <ChatAssistantRoot />
+          <AdminOverlay />
+        </LanguageProvider>
       </body>
     </html>
   );

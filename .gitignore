@@ -36,6 +36,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# uploads (keep folder)
+/.cms-data/
+
 /public/uploads/*
 !/public/uploads/.gitkeep

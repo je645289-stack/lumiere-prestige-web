@@ -1,51 +1,44 @@
 [
   {
     "id": "faq-1",
-    "question": "¿Cómo puedo reservar una cita?",
-    "answer": "Puedes reservar directamente desde nuestro formulario de contacto, por WhatsApp, por teléfono o a través de nuestro calendario en línea. Confirmamos tu cita en menos de 2 horas hábiles.",
+    "question": "Do you offer personalized quotes?",
+    "answer": "Yes! We provide free, personalized quotes based on your vehicle's make, model, year, and condition. Contact us via WhatsApp, phone, or our quote form — no obligation.",
     "enabled": true,
     "order": 1
   },
   {
     "id": "faq-2",
-    "question": "¿Cuáles son los métodos de pago aceptados?",
-    "answer": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard, Amex), transferencia bancaria, PayPal, Stripe y pagos en efectivo. También ofrecemos planes de financiamiento para programas premium.",
+    "question": "How can I book an appointment?",
+    "answer": "You can book by filling out our quote form, messaging us on WhatsApp, calling directly, or using the Book Appointment button. We'll confirm your date and time promptly.",
     "enabled": true,
     "order": 2
   },
   {
     "id": "faq-3",
-    "question": "¿Ofrecen garantía de satisfacción?",
-    "answer": "Sí. Todos nuestros servicios incluyen garantía de satisfacción del 100%. Si no quedas completamente satisfecho, trabajaremos contigo hasta lograr los resultados esperados o reembolsaremos tu inversión.",
+    "question": "Do you show prices online?",
+    "answer": "We display starting prices for our packages. Final pricing may vary based on vehicle size and condition. Contact us for an exact quote tailored to your vehicle.",
     "enabled": true,
     "order": 3
   },
   {
     "id": "faq-4",
-    "question": "¿Puedo cancelar o reprogramar mi cita?",
-    "answer": "Puedes cancelar o reprogramar sin costo con al menos 24 horas de anticipación. Cancelaciones con menos de 24 horas pueden aplicar un cargo del 50% del servicio reservado.",
+    "question": "What services do you offer?",
+    "answer": "We offer interior & exterior wash, paint correction, ceramic coating, headlight restoration, engine cleaning, leather protection, stain removal, full detailing packages, and dash cam installation.",
     "enabled": true,
     "order": 4
   },
   {
     "id": "faq-5",
-    "question": "¿Tienen estacionamiento disponible?",
-    "answer": "Sí, contamos con estacionamiento valet gratuito para todos nuestros clientes. También hay estacionamiento público a una cuadra de nuestras instalaciones en Polanco.",
+    "question": "Where are you located?",
+    "answer": "We're based in Norwalk, Connecticut 06851. We also offer mobile detailing throughout Norwalk, Stamford, Bridgeport, and surrounding CT areas.",
     "enabled": true,
     "order": 5
   },
   {
     "id": "faq-6",
-    "question": "¿Los productos están disponibles para compra en línea?",
-    "answer": "Sí, todos los productos de nuestro catálogo están disponibles para compra en línea con envío a toda la República Mexicana. Envío express gratuito en compras mayores a $3,000 MXN en CDMX.",
+    "question": "Can I contact you through WhatsApp?",
+    "answer": "Absolutely! WhatsApp is one of our preferred contact methods. Click any WhatsApp button on the site to start a conversation with your request pre-filled.",
     "enabled": true,
     "order": 6
-  },
-  {
-    "id": "faq-7",
-    "question": "¿Ofrecen servicios a domicilio?",
-    "answer": "Nuestro servicio de Asesoría VIP incluye visitas a domicilio en CDMX y área metropolitana. Consulta disponibilidad y tarifas adicionales al reservar.",
-    "enabled": true,
-    "order": 7
   }
 ]

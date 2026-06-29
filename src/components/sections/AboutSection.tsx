@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CheckCircle } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { SiteConfig } from "@/types";
 
@@ -7,11 +6,9 @@ export function AboutSection({ config }: { config: SiteConfig }) {
   const { about } = config;
 
   return (
-    <Section id="sobre-nosotros" className="bg-brand-surface/50">
-      <SectionHeader title={about.title} subtitle={about.subtitle} />
-
+    <Section id="sobre-nosotros" className="bg-brand-light">
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-xl">
           <Image
             src={about.image}
             alt={about.imageAlt}
@@ -21,48 +18,36 @@ export function AboutSection({ config }: { config: SiteConfig }) {
           />
         </div>
 
-        <div className="space-y-6">
-          <div>
-            <h3 className="mb-2 font-display text-xl font-semibold text-brand-gold">Nuestra historia</h3>
-            <p className="text-brand-muted leading-relaxed">{about.story}</p>
-          </div>
-          <div>
-            <h3 className="mb-2 font-display text-xl font-semibold text-brand-gold">Experiencia</h3>
-            <p className="text-brand-muted leading-relaxed">{about.experience}</p>
-          </div>
-          <div>
-            <h3 className="mb-2 font-display text-xl font-semibold text-brand-gold">Misión</h3>
-            <p className="text-brand-muted leading-relaxed">{about.mission}</p>
-          </div>
+        <div>
+          <SectionHeader
+            label={about.label || "About Us"}
+            title={about.title}
+            centered={false}
+            light
+            className="mb-8"
+          />
 
-          <div>
-            <h3 className="mb-3 font-display text-xl font-semibold text-brand-gold">
-              ¿Por qué confiar en nosotros?
-            </h3>
-            <ul className="space-y-2">
-              {about.trustReasons.map((reason) => (
-                <li key={reason} className="flex items-start gap-2 text-brand-muted">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-gold" />
-                  {reason}
-                </li>
-              ))}
-            </ul>
+          <p className="text-brand-light-muted leading-relaxed">{about.story}</p>
+          {about.experience && (
+            <p className="mt-4 text-brand-light-muted leading-relaxed">{about.experience}</p>
+          )}
+
+          <div className="mt-10 grid grid-cols-2 gap-6">
+            {about.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded border border-gray-200 bg-white p-6 text-center shadow-sm"
+              >
+                <p className="font-display text-4xl font-bold text-brand-dark md:text-5xl">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-brand-light-muted">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
-        {about.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-lg border border-brand-border bg-brand-dark p-6 text-center"
-          >
-            <p className="font-display text-3xl font-bold text-brand-gold md:text-4xl">
-              {stat.value}
-            </p>
-            <p className="mt-2 text-sm text-brand-muted">{stat.label}</p>
-          </div>
-        ))}
       </div>
     </Section>
   );

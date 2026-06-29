@@ -15,17 +15,17 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
         return (
           <div
             key={faq.id}
-            className="overflow-hidden rounded-lg border border-brand-border bg-brand-surface"
+            className="overflow-hidden rounded border border-brand-border bg-brand-navy/50"
           >
             <button
               onClick={() => setOpenId(isOpen ? null : faq.id)}
-              className="flex w-full items-center justify-between px-6 py-5 text-left transition-colors hover:bg-brand-gold/5"
+              className="flex w-full items-center justify-between px-6 py-5 text-left transition-colors hover:bg-brand-red/5"
               aria-expanded={isOpen}
             >
-              <span className="pr-4 font-medium text-brand-cream">{faq.question}</span>
+              <span className="pr-4 text-sm font-medium text-brand-cream">{faq.question}</span>
               <ChevronDown
                 className={cn(
-                  "h-5 w-5 shrink-0 text-brand-gold transition-transform duration-300",
+                  "h-5 w-5 shrink-0 text-brand-red transition-transform duration-300",
                   isOpen && "rotate-180"
                 )}
               />
@@ -37,7 +37,7 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
               )}
             >
               <div className="overflow-hidden">
-                <p className="px-6 pb-5 text-brand-muted leading-relaxed">{faq.answer}</p>
+                <p className="px-6 pb-5 text-sm text-brand-muted leading-relaxed">{faq.answer}</p>
               </div>
             </div>
           </div>

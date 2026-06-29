@@ -20,8 +20,8 @@ function CheckoutContent() {
   useEffect(() => {
     if (productId) {
       fetch(`/api/content/products`)
-        .then((r) => r.json())
-        .then((products: Product[]) => {
+        .then((r) => r.json() as Promise<Product[]>)
+        .then((products) => {
           const found = products.find((p) => p.id === productId);
           setProduct(found || null);
         });
@@ -38,7 +38,7 @@ function CheckoutContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId: product.id, provider }),
       });
-      const data = await res.json();
+      const data = (await res.json()) as { url?: string; message?: string };
       if (data.url) {
         window.location.href = data.url;
       } else if (data.message) {
@@ -77,9 +77,15 @@ function CheckoutContent() {
       </Link>
 
       <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
-        <div className="relative aspect-square overflow-hidden rounded-lg">
-          <Image src={product.image} alt={product.name} fill className="object-cover" sizes="50vw" />
-        </div>
+        {product.image ? (
+          <div className="relative aspect-square overflow-hidden rounded-lg">
+            <Image src={product.image} alt={product.name} fill className="object-cover" sizes="50vw" />
+          </div>
+        ) : (
+          <div className="flex aspect-square items-center justify-center rounded-lg border border-brand-border bg-brand-surface">
+            <p className="font-display text-2xl font-bold text-brand-cream">{product.name}</p>
+          </div>
+        )}
 
         <div>
           <h1 className="font-display text-3xl font-bold text-brand-cream">{product.name}</h1>

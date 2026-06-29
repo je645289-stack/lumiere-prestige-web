@@ -12,7 +12,41 @@
   }
 
   ::selection {
-    @apply bg-brand-gold/30 text-brand-cream;
+    @apply bg-brand-red/30 text-brand-cream;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-red;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-semibold tracking-tight text-brand-cream md:text-4xl lg:text-5xl;
+  }
+
+  .section-title-light {
+    @apply font-display text-3xl font-semibold uppercase tracking-tight text-brand-dark md:text-4xl lg:text-5xl;
+  }
+
+  .section-accent-line {
+    @apply mx-auto mt-4 h-0.5 w-16 bg-brand-red;
+  }
+
+  .section-accent-line-left {
+    @apply mt-4 h-0.5 w-16 bg-brand-red;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-red px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-brand-red-dark;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-white/40 bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:border-white hover:bg-white/10;
+  }
+
+  .input-field {
+    @apply w-full rounded border border-brand-border bg-brand-navy px-4 py-3 text-brand-cream placeholder:text-brand-muted focus:border-brand-red focus:outline-none focus:ring-1 focus:ring-brand-red/50;
   }
 }
 

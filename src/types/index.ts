@@ -3,21 +3,42 @@ export interface SiteConfig {
   tagline: string;
   logo: string;
   hero: {
+    badge?: string;
     title: string;
+    titleAccent?: string;
     subtitle: string;
     description: string;
     primaryButton: { text: string; href: string };
     secondaryButton: { text: string; href: string };
+    tertiaryButton?: { text: string; href: string };
+    /** Background video from /public, e.g. /videos/hero-video.mp4 */
+    video?: string;
+    /** Poster while video loads; falls back to image */
+    videoPoster?: string;
     image: string;
     imageAlt: string;
   };
+  promotions?: {
+    label: string;
+    title: string;
+    offers: string[];
+    buttonText: string;
+    buttonHref: string;
+  };
+  mobileService?: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonHref: string;
+  };
   about: {
+    label?: string;
     title: string;
     subtitle: string;
     story: string;
-    experience: string;
-    mission: string;
-    trustReasons: string[];
+    experience?: string;
+    mission?: string;
+    trustReasons?: string[];
     image: string;
     imageAlt: string;
     stats: { label: string; value: string }[];
@@ -33,6 +54,7 @@ export interface SiteConfig {
     mapEmbedUrl: string;
     mapLat: number;
     mapLng: number;
+    serviceArea?: string;
   };
   social: {
     instagram: string;
@@ -101,8 +123,10 @@ export interface Product {
   id: string;
   name: string;
   description: string;
-  image: string;
+  image?: string;
   price: string;
+  priceLabel?: string;
+  features?: string[];
   category: string;
   enabled: boolean;
   order: number;
@@ -142,7 +166,10 @@ export interface BlogPost {
 export interface GalleryItem {
   id: string;
   image: string;
+  beforeImage?: string;
+  afterImage?: string;
   alt: string;
+  description?: string;
   category: string;
   order: number;
   enabled: boolean;

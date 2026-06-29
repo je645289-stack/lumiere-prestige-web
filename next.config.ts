@@ -13,3 +13,15 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Cloudflare bindings (KV/R2) via Wrangler are opt-in during local dev.
+// Default `npm run dev` uses in-memory storage — see src/lib/storage/memory.ts.
+// For Wrangler-backed dev: npm run dev:cloudflare  (or npm run pages:preview after build)
+if (
+  process.env.NODE_ENV === "development" &&
+  process.env.CLOUDFLARE_DEV === "true"
+) {
+  void import("@opennextjs/cloudflare").then(({ initOpenNextCloudflareForDev }) =>
+    initOpenNextCloudflareForDev()
+  );
+}

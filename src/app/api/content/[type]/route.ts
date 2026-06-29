@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
-import { readData, writeData, uploadImage } from "@/lib/data";
+import { readData, writeData, resetData, uploadImage } from "@/lib/data";
 import type { ContentType } from "@/types";
+
+export const runtime = "nodejs";
 
 const VALID_TYPES: ContentType[] = [
   "site-config",
@@ -16,6 +19,14 @@ const VALID_TYPES: ContentType[] = [
   "process-steps",
   "categories",
 ];
+
+function revalidatePublicPages() {
+  revalidatePath("/", "layout");
+  revalidatePath("/");
+  revalidatePath("/servicios");
+  revalidatePath("/catalogo");
+  revalidatePath("/blog");
+}
 
 export async function GET(
   _request: NextRequest,
@@ -51,9 +62,33 @@ export async function PUT(
   try {
     const body = await request.json();
     await writeData(type as ContentType, body);
-    return NextResponse.json({ success: true });
+    revalidatePublicPages();
+    return NextResponse.json({ success: true, message: "Changes saved successfully" });
   } catch {
     return NextResponse.json({ error: "Error al guardar" }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ type: string }> }
+) {
+  const session = await getSession();
+  if (!session) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  const { type } = await params;
+  if (!VALID_TYPES.includes(type as ContentType)) {
+    return NextResponse.json({ error: "Tipo inválido" }, { status: 400 });
+  }
+
+  try {
+    await resetData(type as ContentType);
+    revalidatePublicPages();
+    return NextResponse.json({ success: true, message: "Defaults restored" });
+  } catch {
+    return NextResponse.json({ error: "Error al restaurar" }, { status: 500 });
   }
 }
 

@@ -1,66 +1,24 @@
 [
   {
     "id": "gal-1",
-    "image": "https://images.unsplash.com/photo-1600334129128-685c5582fd62?w=600&q=80",
-    "alt": "Recepción principal de Lumière Prestige",
-    "category": "Instalaciones",
+    "image": "https://images.unsplash.com/photo-1494976388531-d105849883bb?w=800&q=80",
+    "beforeImage": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
+    "afterImage": "https://images.unsplash.com/photo-1494976388531-d105849883bb?w=800&q=80",
+    "alt": "Paint Correction — before and after",
+    "description": "Professional paint correction restoring the vehicle to showroom condition.",
+    "category": "Paint Correction",
     "order": 1,
     "enabled": true
   },
   {
     "id": "gal-2",
-    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
-    "alt": "Sala de tratamientos premium",
-    "category": "Servicios",
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80",
+    "beforeImage": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80",
+    "afterImage": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80",
+    "alt": "Interior Detail — before and after",
+    "description": "Deep interior cleaning — every surface, crevice, and fabric restored to spotless condition.",
+    "category": "Interior Detail",
     "order": 2,
-    "enabled": true
-  },
-  {
-    "id": "gal-3",
-    "image": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80",
-    "alt": "Área de relajación exclusiva",
-    "category": "Instalaciones",
-    "order": 3,
-    "enabled": true
-  },
-  {
-    "id": "gal-4",
-    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
-    "alt": "Evento corporativo premium",
-    "category": "Eventos",
-    "order": 4,
-    "enabled": true
-  },
-  {
-    "id": "gal-5",
-    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
-    "alt": "Sesión de transformación integral",
-    "category": "Servicios",
-    "order": 5,
-    "enabled": true
-  },
-  {
-    "id": "gal-6",
-    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
-    "alt": "Experiencia signature completa",
-    "category": "Experiencias",
-    "order": 6,
-    "enabled": true
-  },
-  {
-    "id": "gal-7",
-    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80",
-    "alt": "Productos premium exclusivos",
-    "category": "Productos",
-    "order": 7,
-    "enabled": true
-  },
-  {
-    "id": "gal-8",
-    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-    "alt": "Equipo de especialistas certificados",
-    "category": "Equipo",
-    "order": 8,
     "enabled": true
   }
 ]

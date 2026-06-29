@@ -1,26 +1,91 @@
 "use client";
 
 import { useState } from "react";
-import { Save, Check, AlertCircle } from "lucide-react";
+import { Save, Check, AlertCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import type { ContentType } from "@/types";
+import { resetContent, saveContent, readFromClientCache, type SaveContentResult } from "@/lib/content-store";
 
-interface SaveBarProps {
-  onSave: () => Promise<void>;
-  label?: string;
+export { saveContent, loadAdminContent } from "@/lib/content-store";
+
+export function createAdminSaveHandler<T>(
+  type: ContentType,
+  getData: () => T,
+  setData?: (value: T) => void
+) {
+  return async (): Promise<SaveContentResult> => {
+    const result = await saveContent(type, getData());
+    if (!result.localSaved) {
+      throw new Error("No se pudo guardar el contenido");
+    }
+    const saved = readFromClientCache<T>(type);
+    if (saved && setData) setData(saved);
+    return result;
+  };
 }
 
-export function SaveBar({ onSave, label = "Guardar cambios" }: SaveBarProps) {
+interface SaveBarProps {
+  onSave: () => Promise<void | SaveContentResult>;
+  label?: string;
+  contentType?: ContentType;
+  showReset?: boolean;
+}
+
+export function SaveBar({
+  onSave,
+  label = "Guardar cambios",
+  contentType,
+  showReset = !!contentType,
+}: SaveBarProps) {
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [syncNote, setSyncNote] = useState<string | null>(null);
+  const [resetStatus, setResetStatus] = useState<"idle" | "resetting">("idle");
 
   const handleSave = async () => {
     setStatus("saving");
+    setSyncNote(null);
     try {
-      await onSave();
+      const result = await onSave();
+      if (
+        result &&
+        typeof result === "object" &&
+        "localSaved" in result &&
+        !result.localSaved
+      ) {
+        throw new Error("Local save failed");
+      }
       setStatus("saved");
-      setTimeout(() => setStatus("idle"), 3000);
+      if (result && typeof result === "object" && "serverSynced" in result) {
+        setSyncNote(
+          result.serverSynced
+            ? "Cambios guardados y visibles en la web"
+            : "Guardado en este navegador (inicia sesión para sincronizar)"
+        );
+      } else {
+        setSyncNote("Cambios guardados y visibles en la web");
+      }
+      setTimeout(() => {
+        setStatus("idle");
+        setSyncNote(null);
+      }, 4000);
     } catch {
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+      setSyncNote(null);
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
+
+  const handleReset = async () => {
+    if (!contentType) return;
+    if (!confirm("¿Restaurar valores por defecto? Se perderán los cambios guardados.")) return;
+
+    setResetStatus("resetting");
+    try {
+      await resetContent(contentType);
+      window.location.reload();
+    } catch {
+      alert("Error al restaurar valores por defecto");
+      setResetStatus("idle");
     }
   };
 
@@ -29,7 +94,7 @@ export function SaveBar({ onSave, label = "Guardar cambios" }: SaveBarProps) {
       <div>
         {status === "saved" && (
           <span className="flex items-center gap-2 text-sm text-green-400">
-            <Check className="h-4 w-4" /> Cambios guardados
+            <Check className="h-4 w-4" /> {syncNote ?? "Changes saved successfully"}
           </span>
         )}
         {status === "error" && (
@@ -38,10 +103,23 @@ export function SaveBar({ onSave, label = "Guardar cambios" }: SaveBarProps) {
           </span>
         )}
       </div>
-      <Button onClick={handleSave} disabled={status === "saving"} size="sm">
-        <Save className="h-4 w-4" />
-        {status === "saving" ? "Guardando..." : label}
-      </Button>
+      <div className="flex items-center gap-2">
+        {showReset && contentType && (
+          <Button
+            onClick={handleReset}
+            disabled={resetStatus === "resetting" || status === "saving"}
+            variant="outline"
+            size="sm"
+          >
+            <RotateCcw className="h-4 w-4" />
+            {resetStatus === "resetting" ? "Restaurando..." : "Restaurar valores por defecto"}
+          </Button>
+        )}
+        <Button onClick={handleSave} disabled={status === "saving"} size="sm">
+          <Save className="h-4 w-4" />
+          {status === "saving" ? "Guardando..." : label}
+        </Button>
+      </div>
     </div>
   );
 }
@@ -119,15 +197,6 @@ export function AdminToggle({
   );
 }
 
-export async function saveContent(type: string, data: unknown) {
-  const res = await fetch(`/api/content/${type}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error("Save failed");
-}
-
 export async function uploadImageFile(file: File): Promise<string> {
   const formData = new FormData();
   formData.append("file", file);
@@ -136,7 +205,7 @@ export async function uploadImageFile(file: File): Promise<string> {
     body: formData,
   });
   if (!res.ok) throw new Error("Upload failed");
-  const data = await res.json();
+  const data = (await res.json()) as { url: string };
   return data.url;
 }
 

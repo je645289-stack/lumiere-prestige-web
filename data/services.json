@@ -1,68 +1,92 @@
 [
   {
     "id": "svc-1",
-    "name": "Consultoría Premium",
-    "description": "Sesiones personalizadas de consultoría estratégica con expertos certificados. Análisis profundo de necesidades, plan de acción a medida y seguimiento continuo para maximizar resultados.",
-    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80",
-    "icon": "Briefcase",
-    "price": "Desde $2,500 MXN",
+    "name": "Interior & Exterior Wash",
+    "description": "Complete interior and exterior cleaning to remove dirt, grime, and buildup for a spotless finish inside and out.",
+    "image": "",
+    "icon": "Droplets",
     "enabled": true,
     "order": 1,
-    "category": "Consultoría"
+    "category": "Wash"
   },
   {
     "id": "svc-2",
-    "name": "Experiencia Wellness",
-    "description": "Tratamientos integrales de bienestar que combinan técnicas avanzadas, aromaterapia premium y ambientes diseñados para la relajación total del cuerpo y la mente.",
-    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
+    "name": "Paint Correction",
+    "description": "Remove swirl marks, scratches, and oxidation to restore your paint to a mirror-like, showroom-quality finish.",
+    "image": "",
     "icon": "Sparkles",
-    "price": "Desde $1,800 MXN",
     "enabled": true,
     "order": 2,
-    "category": "Wellness"
+    "category": "Correction"
   },
   {
     "id": "svc-3",
-    "name": "Programa Elite",
-    "description": "Membresía exclusiva con acceso prioritario, descuentos especiales, eventos privados y un concierge personal disponible las 24 horas para atender todas tus necesidades.",
-    "image": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80",
-    "icon": "Crown",
-    "price": "Desde $8,500 MXN/mes",
+    "name": "Ceramic Coating",
+    "description": "Long-lasting nano-ceramic protection that repels water, UV rays, and contaminants for years of pristine shine.",
+    "image": "",
+    "icon": "Shield",
     "enabled": true,
     "order": 3,
-    "category": "Membresías"
+    "category": "Protection"
   },
   {
     "id": "svc-4",
-    "name": "Transformación Integral",
-    "description": "Programa completo de 12 semanas que incluye evaluación inicial, plan personalizado, sesiones semanales y seguimiento de resultados con tecnología de vanguardia.",
-    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
-    "icon": "TrendingUp",
-    "price": "Desde $15,000 MXN",
+    "name": "Headlight Restoration",
+    "description": "Restores clarity and improves night visibility, removing yellowing and oxidation from lenses.",
+    "image": "",
+    "icon": "Lightbulb",
     "enabled": true,
     "order": 4,
-    "category": "Programas"
+    "category": "Restoration"
   },
   {
     "id": "svc-5",
-    "name": "Eventos Corporativos",
-    "description": "Organización de experiencias premium para empresas: team building de lujo, retiros ejecutivos y eventos de networking en espacios exclusivos con catering gourmet.",
-    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
-    "icon": "Users",
-    "price": "Cotización personalizada",
+    "name": "Engine Cleaning",
+    "description": "Thorough engine bay degreasing and cleaning for a pristine engine that performs and looks its best.",
+    "image": "",
+    "icon": "Cog",
     "enabled": true,
     "order": 5,
-    "category": "Corporativo"
+    "category": "Engine"
   },
   {
     "id": "svc-6",
-    "name": "Asesoría VIP",
-    "description": "Servicio exclusivo one-on-one con acceso directo a nuestro director. Incluye visitas a domicilio, horarios flexibles y atención prioritaria sin lista de espera.",
-    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-    "icon": "Star",
-    "price": "Desde $5,000 MXN",
+    "name": "Leather Protection",
+    "description": "Deep conditioning and protection treatment that restores suppleness, color, and durability to leather surfaces.",
+    "image": "",
+    "icon": "Armchair",
     "enabled": true,
     "order": 6,
-    "category": "VIP"
+    "category": "Interior"
+  },
+  {
+    "id": "svc-7",
+    "name": "Stain Removal",
+    "description": "Advanced treatment to eliminate tough stains from upholstery, carpets, and surfaces — results guaranteed.",
+    "image": "",
+    "icon": "Eraser",
+    "enabled": true,
+    "order": 7,
+    "category": "Interior"
+  },
+  {
+    "id": "svc-8",
+    "name": "Full Detailing Package",
+    "description": "The complete treatment — interior deep clean, exterior wash, paint correction, and protection — all in one premium package.",
+    "image": "",
+    "icon": "Star",
+    "enabled": true,
+    "order": 8,
+    "category": "Package"
+  },
+  {
+    "id": "svc-9",
+    "name": "Dash Cam Installation",
+    "description": "Professional installation of dash cameras for continuous recording, impact detection, and night vision. Wi-Fi and cloud options available.",
+    "image": "",
+    "icon": "Video",
+    "enabled": true,
+    "order": 9,
+    "category": "Installation"
   }
 ]

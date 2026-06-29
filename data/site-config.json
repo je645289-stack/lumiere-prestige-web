@@ -1,77 +1,88 @@
 {
-  "businessName": "Lumière Prestige",
-  "tagline": "Excelencia, lujo y confianza en cada detalle",
+  "businessName": "Albert Auto Detailing",
+  "tagline": "Est. 2023 · Norwalk, CT",
   "logo": "/uploads/logo.svg",
   "hero": {
-    "title": "Eleva tu experiencia al nivel Premium",
-    "subtitle": "Servicios exclusivos diseñados para quienes exigen lo mejor",
-    "description": "En Lumière Prestige combinamos elegancia, expertise y atención personalizada para transformar cada visita en una experiencia memorable. Descubre servicios de clase mundial con resultados que hablan por sí solos.",
-    "primaryButton": { "text": "Reservar ahora", "href": "#contacto" },
-    "secondaryButton": { "text": "Ver servicios", "href": "#servicios" },
-    "image": "https://images.unsplash.com/photo-1600334129128-685c5582fd62?w=1200&q=80",
-    "imageAlt": "Interior elegante de Lumière Prestige con ambiente premium"
+    "badge": "Est. 2023 · Norwalk, CT",
+    "title": "Precision Detailing.",
+    "titleAccent": "Perfected.",
+    "subtitle": "Professional detailing that restores your vehicle to a like-new shine and protection.",
+    "description": "",
+    "primaryButton": { "text": "Get a Free Quote", "href": "#contacto" },
+    "secondaryButton": { "text": "Book Appointment", "href": "#contacto" },
+    "tertiaryButton": { "text": "Call Now", "href": "tel:4856898301" },
+    "video": "/videos/hero-video.mp4",
+    "image": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80",
+    "imageAlt": "Professional auto detailing in Norwalk CT"
+  },
+  "promotions": {
+    "label": "Limited Time Offers",
+    "title": "Special Promotions",
+    "offers": [
+      "20% off your first service",
+      "$15 off any full detailing package",
+      "Free interior wash on your first visit",
+      "Free consultation — no obligation"
+    ],
+    "buttonText": "Claim This Offer",
+    "buttonHref": "#contacto"
+  },
+  "mobileService": {
+    "title": "Mobile Service Available",
+    "description": "We come to you! Enjoy professional auto detailing at your home, workplace, or preferred location. We bring our own premium supplies and equipment.",
+    "buttonText": "Schedule Mobile Service",
+    "buttonHref": "#contacto"
   },
   "about": {
-    "title": "Sobre nosotros",
-    "subtitle": "Más de una década definiendo el estándar Premium",
-    "story": "Lumière Prestige nació en 2012 con una visión clara: ofrecer servicios de lujo accesibles para quienes buscan calidad excepcional. Desde nuestros inicios, hemos crecido gracias a la confianza de miles de clientes que valoran la excelencia en cada detalle.",
-    "experience": "Contamos con un equipo de más de 25 especialistas certificados internacionalmente, con formación continua en las técnicas y tendencias más avanzadas del sector. Hemos atendido a más de 8,000 clientes satisfechos.",
-    "mission": "Nuestra misión es elevar el bienestar y la confianza de nuestros clientes a través de experiencias premium, personalizadas y con resultados medibles que superen sus expectativas.",
-    "trustReasons": [
-      "Certificaciones internacionales y estándares de calidad ISO",
-      "Atención 100% personalizada con consultor dedicado",
-      "Productos y tecnología de última generación",
-      "Garantía de satisfacción en todos nuestros servicios",
-      "Más de 500 reseñas positivas verificadas"
-    ],
-    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
-    "imageAlt": "Equipo profesional de Lumière Prestige",
+    "label": "About Us",
+    "title": "Obsessed with Perfection",
+    "subtitle": "",
+    "story": "At Albert Auto Detailing, we specialize in premium car detailing services designed to keep your vehicle looking clean, fresh, and protected — serving Norwalk, CT and surrounding areas.",
+    "experience": "Since 2023, we have focused on quality, attention to detail, and customer satisfaction. Every vehicle is treated with the utmost care because we understand that your car is an investment. We take pride in every detail, delivering results that speak for themselves.",
     "stats": [
-      { "label": "Años de experiencia", "value": "12+" },
-      { "label": "Clientes satisfechos", "value": "8,000+" },
-      { "label": "Especialistas", "value": "25+" },
-      { "label": "Calificación promedio", "value": "4.9/5" }
-    ]
+      { "label": "Satisfaction", "value": "100%" },
+      { "label": "Rated Service", "value": "5★" }
+    ],
+    "image": "https://images.unsplash.com/photo-1619642751034-765df6917fda?w=800&q=80",
+    "imageAlt": "Professional detailer working on a vehicle"
   },
   "contact": {
-    "email": "contacto@lumiereprestige.com",
-    "phone": "+52 55 1234 5678",
-    "whatsapp": "5215512345678",
-    "address": "Av. Presidente Masaryk 123, Polanco",
-    "city": "Ciudad de México",
-    "country": "México",
+    "email": "info@albertautodetailing.com",
+    "phone": "(485) 689-8301",
+    "whatsapp": "14856898301",
+    "address": "Norwalk, Connecticut 06851",
+    "city": "Norwalk",
+    "country": "United States",
     "schedule": [
-      { "day": "Lunes - Viernes", "hours": "9:00 AM - 8:00 PM" },
-      { "day": "Sábado", "hours": "10:00 AM - 6:00 PM" },
-      { "day": "Domingo", "hours": "11:00 AM - 4:00 PM" }
+      { "day": "Mon–Sat", "hours": "8am–6pm" }
     ],
-    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.8886!2d-99.1956!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjQiTiA5OcKwMTEnNDQuMiJX!5e0!3m2!1ses!2smx!4v1700000000000",
-    "mapLat": 19.4326,
-    "mapLng": -99.1956
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.0!2d-73.4079!3d41.1176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e81a0b0b0b0b0b%3A0x0!2sNorwalk%2C%20CT!5e0!3m2!1sen!2sus!4v1700000000000",
+    "mapLat": 41.1176,
+    "mapLng": -73.4079,
+    "serviceArea": "We also offer mobile service throughout Norwalk, Stamford, Bridgeport, and surrounding CT areas."
   },
   "social": {
-    "instagram": "https://instagram.com/lumiereprestige",
-    "facebook": "https://facebook.com/lumiereprestige",
-    "whatsapp": "5215512345678",
-    "linkedin": "https://linkedin.com/company/lumiereprestige"
+    "instagram": "https://instagram.com/albertautodetailing",
+    "facebook": "",
+    "whatsapp": "14856898301",
+    "linkedin": ""
   },
   "seo": {
-    "title": "Lumière Prestige | Servicios Premium de Lujo en Ciudad de México",
-    "description": "Descubre servicios premium de bienestar, consultoría y experiencias exclusivas. Reserva en Lumière Prestige — excelencia, lujo y resultados garantizados en Polanco, CDMX.",
+    "title": "Albert Auto Detailing | Professional Car Detailing in Norwalk CT",
+    "description": "Professional auto detailing in Norwalk, CT. Interior & exterior wash, paint correction, ceramic coating, and mobile service. Get your free quote today.",
     "keywords": [
-      "servicios premium",
-      "lujo",
-      "bienestar",
-      "Polanco",
-      "Ciudad de México",
-      "consultoría premium",
-      "experiencias exclusivas"
+      "auto detailing",
+      "car detailing",
+      "Norwalk CT",
+      "ceramic coating",
+      "paint correction",
+      "mobile detailing"
     ],
-    "ogImage": "https://images.unsplash.com/photo-1600334129128-685c5582fd62?w=1200&q=80",
+    "ogImage": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1200&q=80",
     "localBusiness": {
-      "name": "Lumière Prestige",
-      "type": "HealthAndBeautyBusiness",
-      "areaServed": "Ciudad de México, México"
+      "name": "Albert Auto Detailing",
+      "type": "AutoRepair",
+      "areaServed": "Norwalk, Connecticut"
     }
   },
   "integrations": {
@@ -82,21 +93,21 @@
     "defaultPaymentProvider": "stripe",
     "gaId": "",
     "fbPixelId": "",
-    "calendlyUrl": "https://calendly.com/lumiereprestige/consulta"
+    "calendlyUrl": ""
   },
   "cta": {
-    "title": "¿Listo para vivir la experiencia Premium?",
-    "subtitle": "Agenda tu consulta gratuita hoy y descubre cómo podemos transformar tu experiencia con servicios diseñados exclusivamente para ti.",
-    "primaryButton": { "text": "Reservar consulta", "href": "#contacto" },
-    "secondaryButton": { "text": "Escríbenos por WhatsApp", "href": "whatsapp" }
+    "title": "Get Your Free Estimate",
+    "subtitle": "Fill out the form and we'll get back to you with a personalized quote. No obligation, completely free.",
+    "primaryButton": { "text": "Send Request via WhatsApp", "href": "whatsapp" },
+    "secondaryButton": { "text": "Chat on WhatsApp", "href": "whatsapp" }
   },
   "support": {
     "supportDays": 30,
     "changeRounds": 3,
     "trainingIncluded": true,
-    "trainingDescription": "Incluye capacitación personalizada del panel de administración para que puedas gestionar tu web sin conocimientos técnicos."
+    "trainingDescription": "Includes personalized admin panel training."
   },
   "theme": {
-    "accentColor": "#c9a962"
+    "accentColor": "#ff2a2d"
   }
 }

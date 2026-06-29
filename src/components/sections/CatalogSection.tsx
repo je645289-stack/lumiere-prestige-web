@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { Check, MessageCircle } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { useLanguage } from "@/i18n/LanguageProvider";
 import type { Product, SiteConfig } from "@/types";
-import { getWhatsAppLink } from "@/lib/utils";
-import { isPaymentsEnabled } from "@/lib/payments";
+import { getDefaultWhatsAppLink } from "@/lib/utils";
 
 export function CatalogSection({
   products,
@@ -16,90 +14,69 @@ export function CatalogSection({
   products: Product[];
   config: SiteConfig;
 }) {
-  const categories = [...new Set(products.map((p) => p.category))];
-  const [activeCategory, setActiveCategory] = useState<string>("Todos");
-  const paymentsOn = isPaymentsEnabled() || config.integrations.paymentsEnabled;
-
-  const filtered =
-    activeCategory === "Todos"
-      ? products
-      : products.filter((p) => p.category === activeCategory);
+  const { t } = useLanguage();
+  const contact = config.contact;
 
   return (
-    <Section id="catalogo" className="bg-brand-surface/50">
+    <Section id="catalogo" className="bg-brand-dark bg-section-gradient">
       <SectionHeader
-        title="Catálogo Premium"
-        subtitle="Productos y experiencias exclusivas disponibles para ti"
+        label={t("catalog.label")}
+        title={t("catalog.title")}
+        subtitle={t("catalog.subtitle")}
       />
 
-      <div className="mb-8 flex flex-wrap justify-center gap-2">
-        {["Todos", ...categories].map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`rounded-full px-4 py-2 text-sm transition-all ${
-              activeCategory === cat
-                ? "bg-brand-gold text-brand-dark font-medium"
-                : "border border-brand-border text-brand-muted hover:border-brand-gold hover:text-brand-gold"
-            }`}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="flex flex-col rounded-sm border border-gray-200 bg-white p-6 shadow-lg transition-transform duration-300 hover:-translate-y-1"
           >
-            {cat}
-          </button>
-        ))}
-      </div>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-brand-dark">
+              {product.name}
+            </h3>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((product) => (
-          <Card key={product.id} className="flex flex-col p-0 overflow-hidden">
-            <div className="relative aspect-square">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-              <span className="absolute left-3 top-3 rounded-full bg-brand-dark/80 px-3 py-1 text-xs text-brand-gold">
-                {product.category}
-              </span>
+            <div className="mt-4">
+              {product.priceLabel && (
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-brand-light-muted">
+                  {product.priceLabel}
+                </p>
+              )}
+              <p className="font-display text-3xl font-bold text-brand-dark">{product.price}</p>
             </div>
-            <div className="flex flex-1 flex-col p-6">
-              <h3 className="font-display text-lg font-semibold text-brand-cream">
-                {product.name}
-              </h3>
-              <p className="mt-2 flex-1 text-sm text-brand-muted">{product.description}</p>
-              <p className="mt-3 text-lg font-bold text-brand-gold">{product.price}</p>
-              <div className="mt-4 flex gap-2">
-                {paymentsOn ? (
-                  <Button href={`/checkout?product=${product.id}`} size="sm" className="flex-1">
-                    Comprar
-                  </Button>
-                ) : (
-                  <Button
-                    href={getWhatsAppLink(
-                      config.contact.whatsapp,
-                      `Hola, me interesa: ${product.name} (${product.price})`
-                    )}
-                    size="sm"
-                    className="flex-1"
+
+            <hr className="my-4 border-gray-200" />
+
+            {product.features && (
+              <ul className="flex-1 space-y-2">
+                {product.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 text-xs text-brand-light-muted"
                   >
-                    Solicitar info
-                  </Button>
-                )}
-                <Button href="#contacto" variant="outline" size="sm" className="flex-1">
-                  Contactar
-                </Button>
-              </div>
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-dark" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div className="mt-6 space-y-2">
+              <Button href={getDefaultWhatsAppLink(contact)} size="sm" className="w-full">
+                {t("catalog.bookNow")}
+              </Button>
+              <Button href={getDefaultWhatsAppLink(contact)} variant="dark" size="sm" className="w-full border-gray-200 bg-gray-100 text-brand-dark hover:bg-gray-200">
+                {t("catalog.requestQuote")}
+              </Button>
+              <Button href={getDefaultWhatsAppLink(contact)} variant="dark" size="sm" className="w-full border-gray-200 bg-gray-100 text-brand-dark hover:bg-gray-200">
+                <MessageCircle className="h-3.5 w-3.5" />
+                {t("catalog.whatsapp")}
+              </Button>
             </div>
-          </Card>
+          </div>
         ))}
       </div>
 
-      <div className="mt-10 text-center">
-        <Button href="/catalogo" variant="secondary">
-          Ver catálogo completo
-        </Button>
-      </div>
+      <p className="mt-8 text-center text-xs text-brand-muted">{t("catalog.priceNote")}</p>
     </Section>
   );
 }
