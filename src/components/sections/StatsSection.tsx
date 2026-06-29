@@ -7,19 +7,25 @@ import type { SiteConfig } from "@/types";
 import { useLanguage } from "@/lib/i18n";
 
 function CountUp({ value, active }: { value: string; active: boolean }) {
-  // Split into prefix / number / suffix, e.g. "1,000+" -> "" "1000" "+"
-  const match = value.match(/^(\D*)([\d.,]+)(.*)$/);
-  const [display, setDisplay] = useState(match ? match[1] + "0" + match[3] : value);
+  // Keep the parsed match in a ref so it stays stable across renders and does
+  // not retrigger the animation effect (a fresh array on every render would).
+  const match = useRef(value.match(/^(\D*)([\d.,]+)(.*)$/));
+  match.current = value.match(/^(\D*)([\d.,]+)(.*)$/);
+
+  const [display, setDisplay] = useState(
+    match.current ? match.current[1] + "0" + match.current[3] : value
+  );
 
   useEffect(() => {
-    if (!active || !match) {
-      if (!match) setDisplay(value);
+    const m = match.current;
+    if (!active || !m) {
+      if (!m) setDisplay(value);
       return;
     }
-    const prefix = match[1];
-    const numeric = parseFloat(match[2].replace(/,/g, ""));
-    const suffix = match[3];
-    const isFloat = match[2].includes(".");
+    const prefix = m[1];
+    const numeric = parseFloat(m[2].replace(/,/g, ""));
+    const suffix = m[3];
+    const isFloat = m[2].includes(".");
     const duration = 1400;
     const start = performance.now();
     let raf = 0;
@@ -36,7 +42,7 @@ function CountUp({ value, active }: { value: string; active: boolean }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active, value, match]);
+  }, [active, value]);
 
   return <span>{display}</span>;
 }
