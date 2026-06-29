@@ -10,8 +10,8 @@ export default function IntegrationsAdmin() {
 
   useEffect(() => {
     fetch("/api/content/site-config")
-      .then((r) => r.json())
-      .then(setConfig);
+      .then((r) => r.json() as Promise<SiteConfig>)
+      .then((data) => setConfig(data));
   }, []);
 
   if (!config) return null;
