@@ -1,32 +1,48 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import * as Icons from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { ProcessStep } from "@/types";
+import { useLanguage } from "@/lib/i18n";
+
+function getIcon(name: string) {
+  const Icon = (Icons as unknown as Record<string, LucideIcon>)[name];
+  return Icon ? <Icon className="h-7 w-7" /> : <Icons.Star className="h-7 w-7" />;
+}
 
 export function ProcessSection({ steps }: { steps: ProcessStep[] }) {
+  const { l, t } = useLanguage();
+
   return (
-    <Section id="proceso" className="bg-brand-surface/50">
-      <SectionHeader
-        title="Nuestro Proceso"
-        subtitle="Un camino claro y profesional hacia resultados excepcionales"
-      />
+    <Section id="proceso" className="bg-brand-secondary">
+      <SectionHeader title={t("process.title")} subtitle={t("process.subtitle")} />
 
-      <div className="relative mx-auto max-w-4xl">
-        <div className="absolute left-8 top-0 hidden h-full w-px bg-brand-gold/30 md:block" />
-
-        <div className="space-y-8">
-          {steps.map((step) => (
-            <div key={step.id} className="relative flex gap-6 md:gap-8">
-              <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-brand-gold bg-brand-dark font-display text-xl font-bold text-brand-gold">
-                {step.step}
-              </div>
-              <div className="flex-1 rounded-lg border border-brand-border bg-brand-surface p-6">
-                <h3 className="font-display text-xl font-semibold text-brand-cream">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-brand-muted leading-relaxed">{step.description}</p>
-              </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
+            className="relative rounded-xl border border-brand-border bg-brand-surface p-7 text-center"
+          >
+            <span className="absolute right-4 top-3 font-display text-5xl text-brand-red/15">
+              {String(step.step).padStart(2, "0")}
+            </span>
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-brand-red bg-brand-dark text-brand-red">
+              {getIcon(step.icon)}
             </div>
-          ))}
-        </div>
+            <h3 className="font-heading text-lg font-bold text-brand-cream">
+              {l(step.title)}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-brand-muted">
+              {l(step.description)}
+            </p>
+          </motion.div>
+        ))}
       </div>
     </Section>
   );

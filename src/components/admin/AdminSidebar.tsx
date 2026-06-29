@@ -23,17 +23,17 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/site-config", label: "Configuración", icon: Settings },
-  { href: "/admin/sections", label: "Secciones", icon: Layers },
-  { href: "/admin/services", label: "Servicios", icon: Briefcase },
-  { href: "/admin/products", label: "Catálogo", icon: ShoppingBag },
-  { href: "/admin/testimonials", label: "Testimonios", icon: MessageSquare },
+  { href: "/admin/site-config", label: "General Settings", icon: Settings },
+  { href: "/admin/sections", label: "Sections", icon: Layers },
+  { href: "/admin/services", label: "Services", icon: Briefcase },
+  { href: "/admin/products", label: "Promotions", icon: ShoppingBag },
+  { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquare },
   { href: "/admin/faqs", label: "FAQ", icon: HelpCircle },
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
-  { href: "/admin/gallery", label: "Galería", icon: Image },
-  { href: "/admin/benefits", label: "Beneficios", icon: Award },
-  { href: "/admin/process", label: "Proceso", icon: ListOrdered },
-  { href: "/admin/integrations", label: "Integraciones", icon: Star },
+  { href: "/admin/gallery", label: "Gallery", icon: Image },
+  { href: "/admin/benefits", label: "Why Choose Us", icon: Award },
+  { href: "/admin/process", label: "Process", icon: ListOrdered },
+  { href: "/admin/integrations", label: "Integrations", icon: Star },
 ];
 
 export function AdminSidebar() {

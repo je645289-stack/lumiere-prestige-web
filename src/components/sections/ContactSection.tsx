@@ -10,22 +10,33 @@ import {
   Send,
   Instagram,
   Facebook,
-  Linkedin,
 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import type { SiteConfig } from "@/types";
+import type { Service, SiteConfig } from "@/types";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n";
 
-export function ContactSection({ config }: { config: SiteConfig }) {
+export function ContactSection({
+  config,
+  services,
+}: {
+  config: SiteConfig;
+  services: Service[];
+}) {
+  const { l, t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
+    vehicle: "",
     service: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const inputClass =
+    "w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream placeholder:text-brand-muted focus:border-brand-red focus:outline-none";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,11 +45,11 @@ export function ContactSection({ config }: { config: SiteConfig }) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, type: "quote" }),
       });
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", service: "", message: "" });
+        setForm({ name: "", email: "", phone: "", vehicle: "", service: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -49,157 +60,186 @@ export function ContactSection({ config }: { config: SiteConfig }) {
 
   return (
     <Section id="contacto">
-      <SectionHeader
-        title="Contacto"
-        subtitle="Estamos listos para atenderte. Escríbenos, llámanos o visita nuestras instalaciones."
-      />
+      <SectionHeader title={t("contact.title")} subtitle={t("contact.subtitle")} />
 
       <div className="grid gap-12 lg:grid-cols-2">
         <div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm text-brand-muted">Nombre completo *</label>
+              <label className="mb-1 block text-sm text-brand-muted">
+                {t("contact.name")} *
+              </label>
               <input
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                placeholder="Tu nombre"
+                className={inputClass}
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-sm text-brand-muted">Email *</label>
+                <label className="mb-1 block text-sm text-brand-muted">
+                  {t("contact.phone")} *
+                </label>
                 <input
                   required
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                  placeholder="tu@email.com"
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-sm text-brand-muted">Teléfono</label>
-                <input
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-                  placeholder="+52 55 1234 5678"
+                  className={inputClass}
+                  placeholder="475-689-8301"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm text-brand-muted">
+                  {t("contact.email")}
+                </label>
+                <input
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className={inputClass}
+                  placeholder="you@email.com"
                 />
               </div>
             </div>
-            <div>
-              <label className="mb-1 block text-sm text-brand-muted">Servicio de interés</label>
-              <select
-                value={form.service}
-                onChange={(e) => setForm({ ...form, service: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none"
-              >
-                <option value="">Seleccionar servicio</option>
-                <option value="consultoria">Consultoría Premium</option>
-                <option value="wellness">Experiencia Wellness</option>
-                <option value="elite">Programa Elite</option>
-                <option value="transformacion">Transformación Integral</option>
-                <option value="corporativo">Eventos Corporativos</option>
-                <option value="vip">Asesoría VIP</option>
-                <option value="otro">Otro</option>
-              </select>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-1 block text-sm text-brand-muted">
+                  {t("contact.vehicle")}
+                </label>
+                <input
+                  value={form.vehicle}
+                  onChange={(e) => setForm({ ...form, vehicle: e.target.value })}
+                  className={inputClass}
+                  placeholder={t("contact.vehiclePlaceholder")}
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm text-brand-muted">
+                  {t("contact.service")}
+                </label>
+                <select
+                  value={form.service}
+                  onChange={(e) => setForm({ ...form, service: e.target.value })}
+                  className={inputClass}
+                >
+                  <option value="">{t("contact.selectService")}</option>
+                  {services.map((s) => (
+                    <option key={s.id} value={l(s.name)}>
+                      {l(s.name)}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div>
-              <label className="mb-1 block text-sm text-brand-muted">Mensaje *</label>
+              <label className="mb-1 block text-sm text-brand-muted">
+                {t("contact.message")}
+              </label>
               <textarea
-                required
                 rows={4}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full rounded-lg border border-brand-border bg-brand-surface px-4 py-3 text-brand-cream focus:border-brand-gold focus:outline-none resize-none"
-                placeholder="Cuéntanos cómo podemos ayudarte..."
+                className={`${inputClass} resize-none`}
               />
             </div>
 
-            <Button type="submit" disabled={status === "loading"} className="w-full">
+            <Button type="submit" disabled={status === "loading"} className="w-full uppercase tracking-wide">
               <Send className="h-4 w-4" />
-              {status === "loading" ? "Enviando..." : "Enviar formulario"}
+              {status === "loading" ? t("contact.sending") : t("contact.submit")}
             </Button>
 
             {status === "success" && (
-              <p className="text-center text-sm text-green-400">
-                ¡Mensaje enviado! Te contactaremos pronto.
-              </p>
+              <p className="text-center text-sm text-green-400">{t("contact.success")}</p>
             )}
             {status === "error" && (
-              <p className="text-center text-sm text-red-400">
-                Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.
-              </p>
+              <p className="text-center text-sm text-red-400">{t("contact.error")}</p>
             )}
           </form>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button
-              href={getWhatsAppLink(config.contact.whatsapp)}
-              variant="secondary"
-              size="sm"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
+            <Button href={getWhatsAppLink(config.contact.whatsapp)} variant="secondary" size="sm">
+              <MessageCircle className="h-4 w-4" /> {t("cta.whatsapp")}
             </Button>
             <Button href={getPhoneLink(config.contact.phone)} variant="outline" size="sm">
-              <Phone className="h-4 w-4" /> Llamar
+              <Phone className="h-4 w-4" /> {t("cta.call")}
             </Button>
           </div>
         </div>
 
         <div className="space-y-6">
           {[
-            { icon: MapPin, label: "Dirección", value: `${config.contact.address}, ${config.contact.city}, ${config.contact.country}` },
-            { icon: Phone, label: "Teléfono", value: config.contact.phone, href: getPhoneLink(config.contact.phone) },
-            { icon: Mail, label: "Email", value: config.contact.email, href: `mailto:${config.contact.email}` },
+            {
+              icon: MapPin,
+              label: t("contact.address"),
+              value: `${config.contact.address}, ${config.contact.city}`,
+              href: `https://www.google.com/maps/search/?api=1&query=${config.contact.mapLat},${config.contact.mapLng}`,
+            },
+            {
+              icon: Phone,
+              label: t("contact.phone"),
+              value: config.contact.phone,
+              href: getPhoneLink(config.contact.phone),
+            },
+            {
+              icon: Mail,
+              label: t("contact.email"),
+              value: config.contact.email,
+              href: `mailto:${config.contact.email}`,
+            },
           ].map((item) => (
             <div key={item.label} className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red">
                 <item.icon className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-sm text-brand-muted">{item.label}</p>
-                {item.href ? (
-                  <a href={item.href} className="text-brand-cream hover:text-brand-gold transition-colors">
-                    {item.value}
-                  </a>
-                ) : (
-                  <p className="text-brand-cream">{item.value}</p>
-                )}
+                <a href={item.href} className="text-brand-cream transition-colors hover:text-brand-red">
+                  {item.value}
+                </a>
               </div>
             </div>
           ))}
 
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red">
               <Clock className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-sm text-brand-muted">Horario</p>
-              {config.contact.schedule.map((s) => (
-                <p key={s.day} className="text-brand-cream text-sm">
-                  <span className="text-brand-muted">{s.day}:</span> {s.hours}
+              <p className="text-sm text-brand-muted">{t("contact.hours")}</p>
+              {config.contact.schedule.map((s, i) => (
+                <p key={i} className="text-sm text-brand-cream">
+                  <span className="text-brand-muted">{l(s.day)}:</span> {s.hours}
                 </p>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="mb-3 text-sm text-brand-muted">Síguenos</p>
+            <p className="mb-3 text-sm text-brand-muted">{t("contact.follow")}</p>
             <div className="flex gap-4">
-              <a href={config.social.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
+              <a href={config.social.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-red">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href={config.social.facebook} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
+              <a href={config.social.facebook} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-red">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-brand-muted hover:text-brand-gold">
-                <Linkedin className="h-5 w-5" />
-              </a>
             </div>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-brand-border">
+            <iframe
+              src={config.contact.mapEmbedUrl}
+              width="100%"
+              height="260"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={`Map of ${config.businessName}`}
+              className="w-full"
+            />
           </div>
         </div>
       </div>

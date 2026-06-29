@@ -26,11 +26,11 @@ export default function SectionsAdmin() {
       <main className="ml-64 flex-1 p-8">
         <SaveBar onSave={() => saveContent("sections", sections)} />
 
-        <h1 className="mb-2 font-display text-2xl font-bold text-brand-cream">
-          Secciones
+        <h1 className="mb-2 font-display text-2xl text-brand-cream">
+          Sections
         </h1>
         <p className="mb-6 text-sm text-brand-muted">
-          Activa o desactiva secciones de la página. Las secciones ilimitadas permiten agregar más en el futuro.
+          Enable or disable sections of the homepage and control their order.
         </p>
 
         <div className="space-y-3">
@@ -46,7 +46,7 @@ export default function SectionsAdmin() {
                   <p className="text-xs text-brand-muted">ID: {section.id} · Orden: {section.order}</p>
                 </div>
                 <AdminToggle
-                  label={section.enabled ? "Activa" : "Inactiva"}
+                  label={section.enabled ? "Active" : "Inactive"}
                   checked={section.enabled}
                   onChange={() => toggle(section.id)}
                 />

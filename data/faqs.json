@@ -1,51 +1,52 @@
 [
   {
     "id": "faq-1",
-    "question": "¿Cómo puedo reservar una cita?",
-    "answer": "Puedes reservar directamente desde nuestro formulario de contacto, por WhatsApp, por teléfono o a través de nuestro calendario en línea. Confirmamos tu cita en menos de 2 horas hábiles.",
+    "question": { "en": "How long does a full detail take?", "es": "¿Cuánto tarda un detallado completo?" },
+    "answer": {
+      "en": "Most full details take between 2 and 5 hours depending on the size and condition of your vehicle. Paint correction and ceramic coating may require a full day.",
+      "es": "La mayoría de los detallados completos toman entre 2 y 5 horas según el tamaño y el estado de tu vehículo. La corrección de pintura y el recubrimiento cerámico pueden requerir un día completo."
+    },
     "enabled": true,
     "order": 1
   },
   {
     "id": "faq-2",
-    "question": "¿Cuáles son los métodos de pago aceptados?",
-    "answer": "Aceptamos tarjetas de crédito y débito (Visa, Mastercard, Amex), transferencia bancaria, PayPal, Stripe y pagos en efectivo. También ofrecemos planes de financiamiento para programas premium.",
+    "question": { "en": "Do you offer mobile service?", "es": "¿Ofrecen servicio a domicilio?" },
+    "answer": {
+      "en": "Yes! We offer mobile detailing throughout Norwalk and surrounding areas. We come to your home or office — just let us know your location when booking.",
+      "es": "¡Sí! Ofrecemos detallado a domicilio en Norwalk y zonas cercanas. Vamos a tu casa u oficina; solo indícanos tu ubicación al reservar."
+    },
     "enabled": true,
     "order": 2
   },
   {
     "id": "faq-3",
-    "question": "¿Ofrecen garantía de satisfacción?",
-    "answer": "Sí. Todos nuestros servicios incluyen garantía de satisfacción del 100%. Si no quedas completamente satisfecho, trabajaremos contigo hasta lograr los resultados esperados o reembolsaremos tu inversión.",
+    "question": { "en": "What products do you use?", "es": "¿Qué productos utilizan?" },
+    "answer": {
+      "en": "We use only premium, professional-grade products and certified ceramic coatings that are safe for all finishes and deliver lasting protection.",
+      "es": "Usamos únicamente productos premium de grado profesional y recubrimientos cerámicos certificados, seguros para todos los acabados y con protección duradera."
+    },
     "enabled": true,
     "order": 3
   },
   {
     "id": "faq-4",
-    "question": "¿Puedo cancelar o reprogramar mi cita?",
-    "answer": "Puedes cancelar o reprogramar sin costo con al menos 24 horas de anticipación. Cancelaciones con menos de 24 horas pueden aplicar un cargo del 50% del servicio reservado.",
+    "question": { "en": "How often should I get my car detailed?", "es": "¿Con qué frecuencia debo detallar mi auto?" },
+    "answer": {
+      "en": "For most drivers we recommend a full detail every 3 to 4 months to maintain protection and appearance. Ceramic coatings extend that interval significantly.",
+      "es": "Para la mayoría de los conductores recomendamos un detallado completo cada 3 o 4 meses para mantener la protección y la apariencia. Los recubrimientos cerámicos amplían bastante ese intervalo."
+    },
     "enabled": true,
     "order": 4
   },
   {
     "id": "faq-5",
-    "question": "¿Tienen estacionamiento disponible?",
-    "answer": "Sí, contamos con estacionamiento valet gratuito para todos nuestros clientes. También hay estacionamiento público a una cuadra de nuestras instalaciones en Polanco.",
+    "question": { "en": "Do you offer packages?", "es": "¿Ofrecen paquetes?" },
+    "answer": {
+      "en": "Absolutely. We offer combined packages such as paint correction plus ceramic coating at special pricing. Contact us for a personalized quote.",
+      "es": "Por supuesto. Ofrecemos paquetes combinados como corrección de pintura más recubrimiento cerámico a precios especiales. Contáctanos para una cotización personalizada."
+    },
     "enabled": true,
     "order": 5
-  },
-  {
-    "id": "faq-6",
-    "question": "¿Los productos están disponibles para compra en línea?",
-    "answer": "Sí, todos los productos de nuestro catálogo están disponibles para compra en línea con envío a toda la República Mexicana. Envío express gratuito en compras mayores a $3,000 MXN en CDMX.",
-    "enabled": true,
-    "order": 6
-  },
-  {
-    "id": "faq-7",
-    "question": "¿Ofrecen servicios a domicilio?",
-    "answer": "Nuestro servicio de Asesoría VIP incluye visitas a domicilio en CDMX y área metropolitana. Consulta disponibilidad y tarifas adicionales al reservar.",
-    "enabled": true,
-    "order": 7
   }
 ]

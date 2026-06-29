@@ -87,12 +87,33 @@ export default function IntegrationsAdmin() {
           </section>
 
           <section className="rounded-xl border border-brand-border bg-brand-surface p-6">
-            <h2 className="mb-4 font-semibold text-brand-gold">Reservas / Calendario</h2>
-            <AdminInput
-              label="URL de Calendly"
-              value={config.integrations.calendlyUrl}
-              onChange={(v) => updateIntegration("calendlyUrl", v)}
-            />
+            <h2 className="mb-4 font-semibold text-brand-gold">WhatsApp, Instagram & Booking</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <AdminInput
+                label="WhatsApp number (digits only)"
+                value={config.contact.whatsapp}
+                onChange={(v) =>
+                  setConfig({ ...config, contact: { ...config.contact, whatsapp: v } })
+                }
+              />
+              <AdminInput
+                label="Calendly URL"
+                value={config.integrations.calendlyUrl}
+                onChange={(v) => updateIntegration("calendlyUrl", v)}
+              />
+              <AdminInput
+                label="Instagram access token"
+                value={config.integrations.instagramToken}
+                onChange={(v) => updateIntegration("instagramToken", v)}
+              />
+              <AdminInput
+                label="Google Maps embed URL"
+                value={config.contact.mapEmbedUrl}
+                onChange={(v) =>
+                  setConfig({ ...config, contact: { ...config.contact, mapEmbedUrl: v } })
+                }
+              />
+            </div>
           </section>
 
           <section className="rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-6">

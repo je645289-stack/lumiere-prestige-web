@@ -1,134 +1,67 @@
-# Lumière Prestige — Web Premium
+# Albert Auto Detailing
 
-Sitio web profesional, moderna, editable y lista para entregar a clientes Premium.
+Premium, bilingual (English / Spanish) website for **Albert Auto Detailing** — a professional auto detailing business in Norwalk, Connecticut. Built with Next.js 15 (App Router), TypeScript, Tailwind CSS and a fully functional headless CMS / admin panel. Deployable to Cloudflare Pages via the OpenNext adapter (Cloudflare KV for content, R2 for image uploads).
 
-## Características incluidas
+## Features
 
-- **13 secciones** (activables/desactivables desde el panel)
-- **Panel de administración** sin código en `/admin`
-- **Catálogo, servicios, blog, galería, FAQ, testimonios**
-- **Chat/Asistente IA** (estructura + respuestas automáticas)
-- **Pagos preparados** (Stripe, PayPal, Square)
-- **Integraciones** (WhatsApp, Maps, Analytics, Pixel, Calendly)
-- **SEO Premium** (meta tags, schema.org, sitemap, robots.txt)
-- **Diseño responsivo** y optimizado para rendimiento
-- **30 días de soporte** · **3 rondas de cambios** · **Capacitación personalizada**
+- **Premium dark design** in red / blue / black with Framer Motion animations and glow effects.
+- **Bilingual** (EN / ES) with a language toggle in the header. UI strings and CMS content are both localized.
+- **No public prices** — every CTA drives the customer to WhatsApp, a call, or the quote/booking forms.
+- **Floating WhatsApp + Call buttons** visible on every page.
+- **Sections:** Hero, Stats (animated count-up), Services, About, Why Choose Us, Before & After Gallery (filterable + lightbox), Promotions, Process, Testimonials, FAQ, Instagram feed, Contact (quote form + map), Booking, Final CTA.
+- **Admin panel** at `/admin` (JWT auth, httpOnly cookie) to edit all content, bilingually, without code.
+- **SEO** with metadata, Open Graph, sitemap, robots and LocalBusiness JSON-LD.
 
-## Requisitos
+## Business details
 
-- Node.js 18+ ([descargar](https://nodejs.org/))
-- npm
+- Address: 12 Jenny Jenks St, Norwalk, CT 06851
+- WhatsApp: 475-689-8301
+- Instagram: [@albert_auto_detailing](https://instagram.com/albert_auto_detailing)
+- Email: albertautodetailing2024@gmail.com
 
-## Instalación
+## Getting started
 
 ```bash
-cd lumiere-prestige-web
 npm install
-cp .env.example .env.local
-npm run dev
+cp .env.example .env.local   # already created with defaults
+npm run dev                  # http://localhost:3000
 ```
 
-Abre [http://localhost:3000](http://localhost:3000)
+Open the admin panel at [http://localhost:3000/admin](http://localhost:3000/admin):
 
-## Panel de administración
+- Email: `admin@albertautodetailing.com`
+- Password: `Albert2024!Admin` (set via `ADMIN_PASSWORD` in `.env.local`)
 
-- URL: [http://localhost:3000/admin](http://localhost:3000/admin)
-- Email: `admin@lumiereprestige.com`
-- Contraseña: `Admin123!ChangeMe`
+## Scripts
 
-**Cambia estas credenciales en `.env.local` antes de producción.**
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server on port 3000 |
+| `npm run build` | Production build |
+| `npm run start` | Run the production build |
+| `npm run pages:build` | Build for Cloudflare Pages (OpenNext) |
+| `npm run pages:preview` | Build + preview the Cloudflare worker locally |
+| `npm run pages:deploy` | Build + deploy to Cloudflare Pages |
 
-## Estructura del proyecto
+## How the CMS works
 
-```
-├── data/                  # Contenido editable (JSON)
-├── public/uploads/        # Imágenes subidas
-├── src/
-│   ├── app/               # Páginas y API routes
-│   ├── components/        # UI, secciones, admin
-│   └── lib/               # Utilidades, auth, SEO
-└── docs/                  # Manual de capacitación
-```
+- Default content lives in `/data/*.json` (bundled with the app).
+- The admin saves changes via `PUT /api/content/[type]`, which writes to Cloudflare KV in production or local JSON files in development.
+- All content API routes run on the Node.js runtime (`export const runtime = "nodejs"`).
+- After every save, `revalidatePath()` refreshes the site so changes are visible immediately — no restart required.
+- Image uploads go to Cloudflare R2 in production, or `public/uploads` locally.
 
-## Páginas públicas
+### Bilingual content
 
-| Ruta | Descripción |
-|------|-------------|
-| `/` | Home con todas las secciones |
-| `/servicios` | Listado completo de servicios |
-| `/catalogo` | Catálogo de productos |
-| `/blog` | Blog y noticias |
-| `/blog/[slug]` | Artículo individual |
-| `/checkout` | Checkout (pagos preparados) |
+Translatable fields are stored as `{ "en": "...", "es": "..." }` objects and resolved at render time with `localize()` / the `useLanguage()` hook (`src/lib/i18n.tsx`). The admin renders EN/ES inputs side by side for these fields. Plain strings remain valid and are shown in both languages.
 
-## Activar integraciones
+## Cloudflare deployment
 
-Edita `.env.local`:
+1. Create a KV namespace and an R2 bucket.
+2. Put the KV namespace id in `wrangler.jsonc` (`kv_namespaces[0].id`).
+3. Set environment variables / secrets (`ADMIN_EMAIL`, `ADMIN_PASSWORD`, `JWT_SECRET`, `CONTACT_EMAIL`, etc.).
+4. Run `npm run pages:deploy`.
 
-```env
-# WhatsApp
-NEXT_PUBLIC_WHATSAPP_NUMBER=5215512345678
+## Tech stack
 
-# Pagos
-NEXT_PUBLIC_PAYMENTS_ENABLED=true
-STRIPE_PUBLIC_KEY=pk_...
-STRIPE_SECRET_KEY=sk_...
-
-# Analytics
-NEXT_PUBLIC_GA_ID=G-XXXXXXXX
-NEXT_PUBLIC_FB_PIXEL_ID=123456789
-
-# Chat en vivo (Tawk.to)
-NEXT_PUBLIC_CHAT_PROVIDER=tawk
-NEXT_PUBLIC_CHAT_WIDGET_ID=tu_widget_id
-
-# IA
-OPENAI_API_KEY=sk-...
-NEXT_PUBLIC_AI_ASSISTANT_ENABLED=true
-```
-
-## Almacenamiento del CMS
-
-El contenido se persiste de forma distinta según el entorno (ver `src/lib/storage/`):
-
-| Entorno | Comando | Backend |
-|---------|---------|---------|
-| Desarrollo local | `npm run dev` | Archivos JSON en `/data` |
-| Preview Cloudflare | `npm run pages:preview` | KV local de Wrangler (miniflare) |
-| Producción | `npm run pages:deploy` | Cloudflare KV (`CMS_KV`) + R2 (`CMS_R2`) |
-
-Las imágenes subidas se guardan en `/public/uploads` en local y en R2 en producción (servidas por `/api/media/[key]`).
-
-## Despliegue
-
-### Vercel
-
-```bash
-npm run build
-npm start
-```
-
-### Cloudflare Pages (OpenNext)
-
-1. Crea el namespace KV y el bucket R2:
-
-```bash
-npx wrangler kv namespace create CMS_KV
-npx wrangler r2 bucket create lumiere-prestige-uploads
-```
-
-2. Sustituye `id` de `CMS_KV` en `wrangler.jsonc` por el ID real devuelto.
-3. Configura las variables de entorno/secretos en Cloudflare (`ADMIN_EMAIL`, `ADMIN_PASSWORD`, `JWT_SECRET`, etc.).
-4. Construye y despliega:
-
-```bash
-npm run pages:deploy
-```
-
-Para probar contra KV local antes de desplegar: `npm run pages:preview`.
-
-## Soporte
-
-- 30 días de soporte post-entrega
-- 3 rondas de cambios incluidas
-- Capacitación personalizada del panel (ver `docs/CAPACITACION.md`)
+Next.js 15 · React 19 · TypeScript · Tailwind CSS · Framer Motion · lucide-react · jose (JWT) · zod · @opennextjs/cloudflare · Wrangler.

@@ -9,9 +9,11 @@ import {
   AdminToggle,
   saveContent,
   ImageUpload,
+  LocalizedInput,
 } from "@/components/admin/AdminForm";
 import { Button } from "@/components/ui/Button";
 import { generateId } from "@/lib/utils";
+import { localize } from "@/lib/i18n";
 import type { Service } from "@/types";
 
 export default function ServicesAdmin() {
@@ -28,14 +30,13 @@ export default function ServicesAdmin() {
       ...items,
       {
         id: generateId(),
-        name: "Nuevo servicio",
-        description: "",
+        name: { en: "New service", es: "Nuevo servicio" },
+        description: { en: "", es: "" },
         image: "",
-        icon: "Star",
-        price: "",
+        icon: "Sparkles",
         enabled: true,
         order: items.length + 1,
-        category: "General",
+        category: "Detailing",
       },
     ]);
   };
@@ -45,7 +46,7 @@ export default function ServicesAdmin() {
   };
 
   const removeItem = (id: string) => {
-    if (confirm("¿Eliminar este servicio?")) {
+    if (confirm("Delete this service?")) {
       setItems(items.filter((item) => item.id !== id));
     }
   };
@@ -58,11 +59,11 @@ export default function ServicesAdmin() {
 
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="font-display text-2xl font-bold text-brand-cream">Servicios</h1>
-            <p className="text-sm text-brand-muted">Agrega, edita o elimina servicios</p>
+            <h1 className="font-display text-2xl text-brand-cream">Services</h1>
+            <p className="text-sm text-brand-muted">Add, edit or remove services (EN/ES)</p>
           </div>
           <Button onClick={addItem} size="sm">
-            <Plus className="h-4 w-4" /> Agregar servicio
+            <Plus className="h-4 w-4" /> Add service
           </Button>
         </div>
 
@@ -75,7 +76,7 @@ export default function ServicesAdmin() {
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-2 text-brand-muted">
                   <GripVertical className="h-4 w-4" />
-                  <span className="text-sm">Orden: {item.order}</span>
+                  <span className="text-sm">{localize(item.name, "en")}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <AdminToggle
@@ -94,28 +95,31 @@ export default function ServicesAdmin() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <AdminInput
-                  label="Nombre"
-                  value={item.name}
-                  onChange={(v) => updateItem(item.id, "name", v)}
-                />
-                <AdminInput
-                  label="Categoría"
+                  label="Category"
                   value={item.category}
                   onChange={(v) => updateItem(item.id, "category", v)}
                 />
                 <AdminInput
-                  label="Precio (opcional)"
-                  value={item.price || ""}
-                  onChange={(v) => updateItem(item.id, "price", v)}
-                />
-                <AdminInput
-                  label="Ícono (Lucide)"
+                  label="Icon (Lucide)"
                   value={item.icon}
                   onChange={(v) => updateItem(item.id, "icon", v)}
                 />
+                <AdminInput
+                  label="Order"
+                  type="number"
+                  value={String(item.order)}
+                  onChange={(v) => updateItem(item.id, "order", Number(v))}
+                />
                 <div className="md:col-span-2">
-                  <AdminInput
-                    label="Descripción"
+                  <LocalizedInput
+                    label="Name / Nombre"
+                    value={item.name}
+                    onChange={(v) => updateItem(item.id, "name", v)}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <LocalizedInput
+                    label="Description / Descripción"
                     value={item.description}
                     onChange={(v) => updateItem(item.id, "description", v)}
                     rows={3}
@@ -123,7 +127,7 @@ export default function ServicesAdmin() {
                 </div>
                 <div className="md:col-span-2">
                   <ImageUpload
-                    label="Imagen"
+                    label="Image"
                     value={item.image}
                     onChange={(v) => updateItem(item.id, "image", v)}
                   />

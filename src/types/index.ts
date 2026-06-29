@@ -1,26 +1,34 @@
+/**
+ * Bilingual string. Content authored through the CMS can be either a plain
+ * string (shown in both languages) or an object with English/Spanish variants.
+ * Use `localize()` from `@/lib/i18n` to resolve it for the active language.
+ */
+export type LocalizedString = string | { en: string; es: string };
+
 export interface SiteConfig {
   businessName: string;
-  tagline: string;
+  tagline: LocalizedString;
   logo: string;
   hero: {
-    title: string;
-    subtitle: string;
-    description: string;
-    primaryButton: { text: string; href: string };
-    secondaryButton: { text: string; href: string };
+    badge: LocalizedString;
+    title: LocalizedString;
+    subtitle: LocalizedString;
+    description: LocalizedString;
+    primaryButton: { text: LocalizedString; href: string };
+    secondaryButton: { text: LocalizedString; href: string };
     image: string;
-    imageAlt: string;
+    imageAlt: LocalizedString;
   };
   about: {
-    title: string;
-    subtitle: string;
-    story: string;
-    experience: string;
-    mission: string;
-    trustReasons: string[];
+    title: LocalizedString;
+    subtitle: LocalizedString;
+    story: LocalizedString;
+    experience: LocalizedString;
+    mission: LocalizedString;
+    trustReasons: LocalizedString[];
     image: string;
-    imageAlt: string;
-    stats: { label: string; value: string }[];
+    imageAlt: LocalizedString;
+    stats: { label: LocalizedString; value: string }[];
   };
   contact: {
     email: string;
@@ -29,7 +37,7 @@ export interface SiteConfig {
     address: string;
     city: string;
     country: string;
-    schedule: { day: string; hours: string }[];
+    schedule: { day: LocalizedString; hours: string }[];
     mapEmbedUrl: string;
     mapLat: number;
     mapLng: number;
@@ -60,18 +68,13 @@ export interface SiteConfig {
     gaId: string;
     fbPixelId: string;
     calendlyUrl: string;
+    instagramToken: string;
   };
   cta: {
-    title: string;
-    subtitle: string;
-    primaryButton: { text: string; href: string };
-    secondaryButton: { text: string; href: string };
-  };
-  support: {
-    supportDays: number;
-    changeRounds: number;
-    trainingIncluded: boolean;
-    trainingDescription: string;
+    title: LocalizedString;
+    subtitle: LocalizedString;
+    primaryButton: { text: LocalizedString; href: string };
+    secondaryButton: { text: LocalizedString; href: string };
   };
   theme: {
     accentColor: string;
@@ -87,22 +90,23 @@ export interface SectionConfig {
 
 export interface Service {
   id: string;
-  name: string;
-  description: string;
+  name: LocalizedString;
+  description: LocalizedString;
   image: string;
   icon: string;
-  price?: string;
   enabled: boolean;
   order: number;
   category: string;
 }
 
+/** Reused as "Promotions" in the public site (no prices are displayed). */
 export interface Product {
   id: string;
-  name: string;
-  description: string;
+  name: LocalizedString;
+  description: LocalizedString;
   image: string;
-  price: string;
+  /** Promo badge text, e.g. "20% OFF". */
+  badge: string;
   category: string;
   enabled: boolean;
   order: number;
@@ -112,7 +116,7 @@ export interface Testimonial {
   id: string;
   name: string;
   photo?: string;
-  comment: string;
+  comment: LocalizedString;
   rating: number;
   service: string;
   enabled: boolean;
@@ -121,8 +125,8 @@ export interface Testimonial {
 
 export interface FAQ {
   id: string;
-  question: string;
-  answer: string;
+  question: LocalizedString;
+  answer: LocalizedString;
   enabled: boolean;
   order: number;
 }
@@ -142,7 +146,7 @@ export interface BlogPost {
 export interface GalleryItem {
   id: string;
   image: string;
-  alt: string;
+  alt: LocalizedString;
   category: string;
   order: number;
   enabled: boolean;
@@ -150,8 +154,8 @@ export interface GalleryItem {
 
 export interface Benefit {
   id: string;
-  title: string;
-  description: string;
+  title: LocalizedString;
+  description: LocalizedString;
   icon: string;
   order: number;
   enabled: boolean;
@@ -160,8 +164,9 @@ export interface Benefit {
 export interface ProcessStep {
   id: string;
   step: number;
-  title: string;
-  description: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  icon: string;
   order: number;
   enabled: boolean;
 }

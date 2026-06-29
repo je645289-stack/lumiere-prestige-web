@@ -12,7 +12,13 @@
   }
 
   ::selection {
-    @apply bg-brand-gold/30 text-brand-cream;
+    @apply bg-brand-red/40 text-brand-cream;
+  }
+
+  /* Headings use the condensed display face with wide tracking */
+  h1,
+  h2 {
+    letter-spacing: 0.01em;
   }
 }
 
@@ -23,4 +29,38 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #ff3333 0%, #2a5cff 100%);
+  }
+
+  /* Subtle red/blue glow used on premium cards & buttons */
+  .glow-red {
+    box-shadow: 0 0 30px rgba(204, 0, 0, 0.25);
+  }
+
+  .glow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 28px rgba(204, 0, 0, 0.3), 0 0 48px rgba(0, 51, 204, 0.18);
+    transform: translateY(-4px);
+  }
+}
+
+/* Custom scrollbar for a polished, dark feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e2e;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cc0000;
 }

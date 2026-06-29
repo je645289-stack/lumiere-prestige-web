@@ -4,18 +4,18 @@ export default function FAQsAdmin() {
   return (
     <GenericListAdmin
       contentType="faqs"
-      title="Preguntas Frecuentes"
-      description="Edita preguntas y respuestas comunes"
-      addLabel="Agregar pregunta"
+      title="FAQ"
+      description="Edit frequently asked questions (EN/ES)"
+      addLabel="Add question"
       defaultItem={{
-        question: "Nueva pregunta",
-        answer: "",
+        question: { en: "New question", es: "Nueva pregunta" },
+        answer: { en: "", es: "" },
         enabled: true,
         order: 1,
       }}
       fields={[
-        { key: "question", label: "Pregunta", colSpan: true },
-        { key: "answer", label: "Respuesta", type: "textarea", colSpan: true },
+        { key: "question", label: "Question / Pregunta", type: "localized", colSpan: true },
+        { key: "answer", label: "Answer / Respuesta", type: "localized-textarea", colSpan: true },
       ]}
     />
   );

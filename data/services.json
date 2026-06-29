@@ -1,68 +1,80 @@
 [
   {
-    "id": "svc-1",
-    "name": "Consultoría Premium",
-    "description": "Sesiones personalizadas de consultoría estratégica con expertos certificados. Análisis profundo de necesidades, plan de acción a medida y seguimiento continuo para maximizar resultados.",
-    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80",
-    "icon": "Briefcase",
-    "price": "Desde $2,500 MXN",
+    "id": "svc-wash",
+    "name": { "en": "Interior & Exterior Wash", "es": "Lavado Interior y Exterior" },
+    "description": {
+      "en": "A complete hand wash inside and out. We deep-clean carpets, seats and surfaces while restoring a deep, clean shine to your paint.",
+      "es": "Lavado completo a mano por dentro y por fuera. Limpiamos a profundidad alfombras, asientos y superficies, devolviendo un brillo limpio e intenso a tu pintura."
+    },
+    "image": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
+    "icon": "Sparkles",
     "enabled": true,
     "order": 1,
-    "category": "Consultoría"
+    "category": "Detailing"
   },
   {
-    "id": "svc-2",
-    "name": "Experiencia Wellness",
-    "description": "Tratamientos integrales de bienestar que combinan técnicas avanzadas, aromaterapia premium y ambientes diseñados para la relajación total del cuerpo y la mente.",
-    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
-    "icon": "Sparkles",
-    "price": "Desde $1,800 MXN",
+    "id": "svc-paint",
+    "name": { "en": "Paint Correction", "es": "Corrección de Pintura" },
+    "description": {
+      "en": "Remove swirl marks, scratches and oxidation with multi-stage machine polishing for a flawless, mirror-like finish.",
+      "es": "Eliminamos remolinos, rayones y oxidación con pulido mecánico de varias etapas para un acabado impecable tipo espejo."
+    },
+    "image": "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?w=800&q=80",
+    "icon": "Brush",
     "enabled": true,
     "order": 2,
-    "category": "Wellness"
+    "category": "Paint Correction"
   },
   {
-    "id": "svc-3",
-    "name": "Programa Elite",
-    "description": "Membresía exclusiva con acceso prioritario, descuentos especiales, eventos privados y un concierge personal disponible las 24 horas para atender todas tus necesidades.",
-    "image": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80",
-    "icon": "Crown",
-    "price": "Desde $8,500 MXN/mes",
+    "id": "svc-ceramic",
+    "name": { "en": "Ceramic Coating", "es": "Recubrimiento Cerámico" },
+    "description": {
+      "en": "Long-lasting ceramic protection that repels water, dirt and UV rays while keeping your vehicle glossy for years.",
+      "es": "Protección cerámica duradera que repele agua, suciedad y rayos UV, manteniendo tu vehículo brillante por años."
+    },
+    "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80",
+    "icon": "ShieldCheck",
     "enabled": true,
     "order": 3,
-    "category": "Membresías"
+    "category": "Ceramic"
   },
   {
-    "id": "svc-4",
-    "name": "Transformación Integral",
-    "description": "Programa completo de 12 semanas que incluye evaluación inicial, plan personalizado, sesiones semanales y seguimiento de resultados con tecnología de vanguardia.",
-    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
-    "icon": "TrendingUp",
-    "price": "Desde $15,000 MXN",
+    "id": "svc-headlight",
+    "name": { "en": "Headlight Restoration", "es": "Restauración de Faros" },
+    "description": {
+      "en": "Bring cloudy, yellowed headlights back to crystal-clear clarity for better visibility and a fresh look.",
+      "es": "Devolvemos la claridad cristalina a faros opacos y amarillentos para mejor visibilidad y una apariencia renovada."
+    },
+    "image": "https://images.unsplash.com/photo-1453491945771-a1e904948959?w=800&q=80",
+    "icon": "Lightbulb",
     "enabled": true,
     "order": 4,
-    "category": "Programas"
+    "category": "Headlights"
   },
   {
-    "id": "svc-5",
-    "name": "Eventos Corporativos",
-    "description": "Organización de experiencias premium para empresas: team building de lujo, retiros ejecutivos y eventos de networking en espacios exclusivos con catering gourmet.",
-    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
-    "icon": "Users",
-    "price": "Cotización personalizada",
+    "id": "svc-engine",
+    "name": { "en": "Engine Cleaning", "es": "Limpieza de Motor" },
+    "description": {
+      "en": "Safe, detailed degreasing and dressing of your engine bay to keep it clean, cool and looking brand new.",
+      "es": "Desengrasado y acondicionamiento seguro y detallado del compartimento del motor para mantenerlo limpio y como nuevo."
+    },
+    "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
+    "icon": "Wrench",
     "enabled": true,
     "order": 5,
-    "category": "Corporativo"
+    "category": "Detailing"
   },
   {
-    "id": "svc-6",
-    "name": "Asesoría VIP",
-    "description": "Servicio exclusivo one-on-one con acceso directo a nuestro director. Incluye visitas a domicilio, horarios flexibles y atención prioritaria sin lista de espera.",
-    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-    "icon": "Star",
-    "price": "Desde $5,000 MXN",
+    "id": "svc-leather",
+    "name": { "en": "Leather Protection", "es": "Protección de Cuero" },
+    "description": {
+      "en": "Deep clean, condition and protect leather seats to prevent cracking and keep your interior soft and luxurious.",
+      "es": "Limpieza profunda, acondicionamiento y protección de asientos de cuero para evitar grietas y mantener tu interior suave y lujoso."
+    },
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80",
+    "icon": "Armchair",
     "enabled": true,
     "order": 6,
-    "category": "VIP"
+    "category": "Interior"
   }
 ]

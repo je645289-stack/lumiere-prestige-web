@@ -1,42 +1,67 @@
 [
   {
-    "id": "prod-3",
-    "name": "Membresía Anual Elite",
-    "description": "Acceso ilimitado a todos los servicios premium, eventos exclusivos, descuentos del 30% en productos y concierge personal durante 12 meses.",
-    "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80",
-    "price": "$89,000 MXN/año",
-    "category": "Membresías",
+    "id": "promo-first",
+    "name": { "en": "20% Off Your First Service", "es": "20% en tu Primer Servicio" },
+    "description": {
+      "en": "New customers save 20% on any detailing package. Mention this offer when you request your quote.",
+      "es": "Los nuevos clientes ahorran 20% en cualquier paquete de detallado. Menciona esta oferta al pedir tu cotización."
+    },
+    "image": "https://images.unsplash.com/photo-1605164599901-db7f68c1b1d3?w=800&q=80",
+    "badge": "20% OFF",
+    "category": "New Customers",
+    "enabled": true,
+    "order": 1
+  },
+  {
+    "id": "promo-fulldetail",
+    "name": { "en": "$15 Off Full Detailing", "es": "$15 de Descuento en Detallado Completo" },
+    "description": {
+      "en": "Book a complete interior and exterior detail and take $15 off the total. Perfect for a full refresh.",
+      "es": "Reserva un detallado completo interior y exterior y obtén $15 de descuento. Ideal para una renovación total."
+    },
+    "image": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
+    "badge": "$15 OFF",
+    "category": "Detailing",
+    "enabled": true,
+    "order": 2
+  },
+  {
+    "id": "promo-interior",
+    "name": { "en": "Free Interior Wash", "es": "Lavado Interior Gratis" },
+    "description": {
+      "en": "Get a complimentary interior wash on your first visit when you book any exterior service.",
+      "es": "Recibe un lavado interior de cortesía en tu primera visita al reservar cualquier servicio exterior."
+    },
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80",
+    "badge": "FREE",
+    "category": "First Visit",
     "enabled": true,
     "order": 3
   },
   {
-    "id": "prod-4",
-    "name": "Gift Card Premium",
-    "description": "Tarjeta de regalo elegante disponible en montos de $1,000 a $50,000 MXN. El regalo perfecto para quienes aprecian la excelencia y el lujo.",
-    "image": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&q=80",
-    "price": "Desde $1,000 MXN",
-    "category": "Regalos",
+    "id": "promo-launch",
+    "name": { "en": "Special Launch Packages", "es": "Paquetes Especiales de Lanzamiento" },
+    "description": {
+      "en": "Bundle paint correction and ceramic coating at an exclusive launch price. Limited spots available.",
+      "es": "Combina corrección de pintura y recubrimiento cerámico a un precio exclusivo de lanzamiento. Cupos limitados."
+    },
+    "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80",
+    "badge": "BUNDLE",
+    "category": "Packages",
     "enabled": true,
     "order": 4
   },
   {
-    "id": "prod-5",
-    "name": "Pack Corporativo",
-    "description": "Paquete diseñado para empresas con 10 sesiones de consultoría, reportes ejecutivos y acceso a nuestra plataforma de bienestar corporativo.",
-    "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80",
-    "price": "$45,000 MXN",
-    "category": "Corporativo",
+    "id": "promo-consult",
+    "name": { "en": "Free Consultation", "es": "Consulta Gratis" },
+    "description": {
+      "en": "Not sure what your vehicle needs? Get a free, no-obligation consultation and personalized recommendation.",
+      "es": "¿No sabes qué necesita tu vehículo? Recibe una consulta gratis y sin compromiso con una recomendación personalizada."
+    },
+    "image": "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?w=800&q=80",
+    "badge": "FREE",
+    "category": "Consultation",
     "enabled": true,
     "order": 5
-  },
-  {
-    "id": "prod-6",
-    "name": "Experiencia Signature",
-    "description": "Experiencia de un día completo con todos los servicios premium incluidos, almuerzo gourmet, regalo de bienvenida y sesión de fotografía profesional.",
-    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
-    "price": "$12,500 MXN",
-    "category": "Experiencias",
-    "enabled": true,
-    "order": 6
   }
 ]
