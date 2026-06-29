@@ -87,14 +87,45 @@ OPENAI_API_KEY=sk-...
 NEXT_PUBLIC_AI_ASSISTANT_ENABLED=true
 ```
 
+## Almacenamiento del CMS
+
+El contenido se persiste de forma distinta según el entorno (ver `src/lib/storage/`):
+
+| Entorno | Comando | Backend |
+|---------|---------|---------|
+| Desarrollo local | `npm run dev` | Archivos JSON en `/data` |
+| Preview Cloudflare | `npm run pages:preview` | KV local de Wrangler (miniflare) |
+| Producción | `npm run pages:deploy` | Cloudflare KV (`CMS_KV`) + R2 (`CMS_R2`) |
+
+Las imágenes subidas se guardan en `/public/uploads` en local y en R2 en producción (servidas por `/api/media/[key]`).
+
 ## Despliegue
 
-Recomendado: [Vercel](https://vercel.com)
+### Vercel
 
 ```bash
 npm run build
 npm start
 ```
+
+### Cloudflare Pages (OpenNext)
+
+1. Crea el namespace KV y el bucket R2:
+
+```bash
+npx wrangler kv namespace create CMS_KV
+npx wrangler r2 bucket create lumiere-prestige-uploads
+```
+
+2. Sustituye `id` de `CMS_KV` en `wrangler.jsonc` por el ID real devuelto.
+3. Configura las variables de entorno/secretos en Cloudflare (`ADMIN_EMAIL`, `ADMIN_PASSWORD`, `JWT_SECRET`, etc.).
+4. Construye y despliega:
+
+```bash
+npm run pages:deploy
+```
+
+Para probar contra KV local antes de desplegar: `npm run pages:preview`.
 
 ## Soporte
 
