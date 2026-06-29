@@ -28,10 +28,10 @@ export function LoginForm() {
         router.push("/admin/dashboard");
         router.refresh();
       } else {
-        setError("Email o contraseña incorrectos");
+        setError("Incorrect email or password");
       }
     } catch {
-      setError("Error de conexión");
+      setError("Connection error");
     } finally {
       setLoading(false);
     }
@@ -44,11 +44,11 @@ export function LoginForm() {
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand-gold/10">
             <Lock className="h-8 w-8 text-brand-gold" />
           </div>
-          <h1 className="font-display text-2xl font-bold text-brand-cream">
-            Panel de Administración
+          <h1 className="font-display text-2xl text-brand-cream">
+            Albert Auto Detailing — Admin
           </h1>
           <p className="mt-2 text-sm text-brand-muted">
-            Ingresa tus credenciales para editar el contenido de tu web
+            Sign in to manage your website content
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-brand-border bg-brand-dark py-3 pl-10 pr-4 text-brand-cream focus:border-brand-gold focus:outline-none"
-                placeholder="admin@tunegocio.com"
+                placeholder="admin@albertautodetailing.com"
               />
             </div>
           </div>
@@ -85,12 +85,12 @@ export function LoginForm() {
           {error && <p className="text-center text-sm text-red-400">{error}</p>}
 
           <Button type="submit" disabled={loading} className="w-full">
-            {loading ? "Ingresando..." : "Ingresar al panel"}
+            {loading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-xs text-brand-muted">
-          Incluye capacitación personalizada · 30 días de soporte · 3 rondas de cambios
+          Albert Auto Detailing · Norwalk, CT · Manage content without code
         </p>
       </div>
     </div>

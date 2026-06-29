@@ -1,49 +1,67 @@
 [
   {
-    "id": "ben-1",
-    "title": "Atención Personalizada",
-    "description": "Cada cliente recibe un plan exclusivo diseñado por expertos según sus necesidades, objetivos y preferencias únicas.",
-    "icon": "UserCheck",
+    "id": "b-1",
+    "title": { "en": "Premium Products Only", "es": "Solo Productos Premium" },
+    "description": {
+      "en": "We never cut corners. Every service uses professional-grade, finish-safe products.",
+      "es": "Nunca tomamos atajos. Cada servicio usa productos de grado profesional y seguros para el acabado."
+    },
+    "icon": "Award",
     "order": 1,
     "enabled": true
   },
   {
-    "id": "ben-2",
-    "title": "Resultados Garantizados",
-    "description": "Compromiso total con la satisfacción. Si no quedas satisfecho, trabajamos hasta lograr los resultados o reembolsamos.",
-    "icon": "ShieldCheck",
+    "id": "b-2",
+    "title": { "en": "Certified Technicians", "es": "Técnicos Certificados" },
+    "description": {
+      "en": "Trained, experienced detailers who treat your vehicle with showroom-level care.",
+      "es": "Detalladores capacitados y con experiencia que cuidan tu vehículo a nivel de exhibición."
+    },
+    "icon": "BadgeCheck",
     "order": 2,
     "enabled": true
   },
   {
-    "id": "ben-3",
-    "title": "Tecnología de Vanguardia",
-    "description": "Equipamiento y técnicas de última generación importados directamente de los centros de innovación más avanzados del mundo.",
-    "icon": "Zap",
+    "id": "b-3",
+    "title": { "en": "100% Satisfaction Guarantee", "es": "Garantía de Satisfacción 100%" },
+    "description": {
+      "en": "If you're not thrilled with the results, we'll make it right. Your satisfaction is our priority.",
+      "es": "Si no quedas encantado con el resultado, lo solucionamos. Tu satisfacción es nuestra prioridad."
+    },
+    "icon": "ThumbsUp",
     "order": 3,
     "enabled": true
   },
   {
-    "id": "ben-4",
-    "title": "Ambiente Premium",
-    "description": "Instalaciones diseñadas por arquitectos de interiores de lujo para crear una experiencia sensorial incomparable.",
-    "icon": "Gem",
+    "id": "b-4",
+    "title": { "en": "Mobile Service Available", "es": "Servicio a Domicilio" },
+    "description": {
+      "en": "Can't come to us? We bring professional detailing right to your driveway.",
+      "es": "¿No puedes venir? Llevamos el detallado profesional hasta la puerta de tu casa."
+    },
+    "icon": "Truck",
     "order": 4,
     "enabled": true
   },
   {
-    "id": "ben-5",
-    "title": "Flexibilidad Total",
-    "description": "Horarios extendidos, reservas en línea 24/7, servicio a domicilio VIP y cancelaciones flexibles sin complicaciones.",
-    "icon": "Clock",
+    "id": "b-5",
+    "title": { "en": "Locally Owned in Norwalk", "es": "Negocio Local en Norwalk" },
+    "description": {
+      "en": "A trusted local business proud to serve drivers across Connecticut.",
+      "es": "Un negocio local de confianza, orgulloso de servir a conductores en todo Connecticut."
+    },
+    "icon": "MapPin",
     "order": 5,
     "enabled": true
   },
   {
-    "id": "ben-6",
-    "title": "Comunidad Exclusiva",
-    "description": "Acceso a eventos privados, networking con otros miembros premium y contenido exclusivo solo para clientes.",
-    "icon": "Users",
+    "id": "b-6",
+    "title": { "en": "Lasting Protection", "es": "Protección Duradera" },
+    "description": {
+      "en": "From ceramic coatings to leather care, we protect your investment for the long run.",
+      "es": "Desde recubrimientos cerámicos hasta cuidado del cuero, protegemos tu inversión a largo plazo."
+    },
+    "icon": "ShieldCheck",
     "order": 6,
     "enabled": true
   }

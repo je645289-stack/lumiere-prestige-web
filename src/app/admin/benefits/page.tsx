@@ -4,20 +4,20 @@ export default function BenefitsAdmin() {
   return (
     <GenericListAdmin
       contentType="benefits"
-      title="Beneficios"
-      description="Edita los beneficios de tu negocio"
-      addLabel="Agregar beneficio"
+      title="Why Choose Us / Beneficios"
+      description="Edit your business highlights (EN/ES)"
+      addLabel="Add benefit"
       defaultItem={{
-        title: "Nuevo beneficio",
-        description: "",
+        title: { en: "New benefit", es: "Nuevo beneficio" },
+        description: { en: "", es: "" },
         icon: "Star",
         order: 1,
         enabled: true,
       }}
       fields={[
-        { key: "title", label: "Título" },
-        { key: "icon", label: "Ícono (Lucide)" },
-        { key: "description", label: "Descripción", type: "textarea", colSpan: true },
+        { key: "title", label: "Title / Título", type: "localized", colSpan: true },
+        { key: "icon", label: "Icon (Lucide)" },
+        { key: "description", label: "Description / Descripción", type: "localized-textarea", colSpan: true },
       ]}
     />
   );

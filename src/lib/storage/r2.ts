@@ -14,9 +14,15 @@ function buildKey(file: File): string {
 }
 
 async function getCloudflareR2(): Promise<R2Bucket | null> {
-  const { getCloudflareContext } = await import("@opennextjs/cloudflare");
-  const { env } = await getCloudflareContext({ async: true });
-  return (env as unknown as { CMS_R2?: R2Bucket }).CMS_R2 ?? null;
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const { env } = await getCloudflareContext({ async: true });
+    return (env as unknown as { CMS_R2?: R2Bucket }).CMS_R2 ?? null;
+  } catch {
+    // No Cloudflare worker context (e.g. `npm start` on Node) — caller falls
+    // back to the local filesystem.
+    return null;
+  }
 }
 
 export async function uploadImage(file: File): Promise<string> {

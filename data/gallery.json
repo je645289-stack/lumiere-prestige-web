@@ -1,66 +1,101 @@
 [
   {
-    "id": "gal-1",
-    "image": "https://images.unsplash.com/photo-1600334129128-685c5582fd62?w=600&q=80",
-    "alt": "Recepción principal de Lumière Prestige",
-    "category": "Instalaciones",
+    "id": "g-1",
+    "image": "https://images.unsplash.com/photo-1605164599901-db7f68c1b1d3?w=800&q=80",
+    "alt": {
+      "en": "Glossy black car after exterior detailing",
+      "es": "Auto negro brillante tras el detallado exterior"
+    },
+    "category": "Paint Correction",
     "order": 1,
     "enabled": true
   },
   {
-    "id": "gal-2",
-    "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
-    "alt": "Sala de tratamientos premium",
-    "category": "Servicios",
+    "id": "g-2",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80",
+    "alt": {
+      "en": "Clean leather interior after detailing",
+      "es": "Interior de cuero limpio tras el detallado"
+    },
+    "category": "Interior",
     "order": 2,
     "enabled": true
   },
   {
-    "id": "gal-3",
-    "image": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80",
-    "alt": "Área de relajación exclusiva",
-    "category": "Instalaciones",
+    "id": "g-3",
+    "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80",
+    "alt": {
+      "en": "Ceramic coated paint repelling water",
+      "es": "Pintura con recubrimiento cerámico repeliendo agua"
+    },
+    "category": "Ceramic",
     "order": 3,
     "enabled": true
   },
   {
-    "id": "gal-4",
-    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80",
-    "alt": "Evento corporativo premium",
-    "category": "Eventos",
+    "id": "g-4",
+    "image": "https://images.unsplash.com/photo-1453491945771-a1e904948959?w=800&q=80",
+    "alt": {
+      "en": "Restored crystal-clear headlight",
+      "es": "Faro restaurado cristalino"
+    },
+    "category": "Headlights",
     "order": 4,
     "enabled": true
   },
   {
-    "id": "gal-5",
-    "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80",
-    "alt": "Sesión de transformación integral",
-    "category": "Servicios",
+    "id": "g-5",
+    "image": "/uploads/1782744190460-evxn34j.png",
+    "alt": {
+      "en": "Machine polishing for paint correction",
+      "es": "Pulido a máquina para corrección de pintura"
+    },
+    "category": "Paint Correction",
     "order": 5,
     "enabled": true
   },
   {
-    "id": "gal-6",
-    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
-    "alt": "Experiencia signature completa",
-    "category": "Experiencias",
+    "id": "g-6",
+    "image": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
+    "alt": {
+      "en": "Detailer polishing car to mirror finish",
+      "es": "Detallador puliendo el auto a acabado espejo"
+    },
+    "category": "Paint Correction",
     "order": 6,
     "enabled": true
   },
   {
-    "id": "gal-7",
-    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80",
-    "alt": "Productos premium exclusivos",
-    "category": "Productos",
+    "id": "g-7",
+    "image": "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=800&q=80",
+    "alt": {
+      "en": "Detailed dashboard and console",
+      "es": "Tablero y consola detallados"
+    },
+    "category": "Interior",
     "order": 7,
     "enabled": true
   },
   {
-    "id": "gal-8",
-    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-    "alt": "Equipo de especialistas certificados",
-    "category": "Equipo",
+    "id": "g-8",
+    "image": "https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&q=80",
+    "alt": {
+      "en": "Glossy red sports car after ceramic coating",
+      "es": "Deportivo rojo brillante tras recubrimiento cerámico"
+    },
+    "category": "Ceramic",
     "order": 8,
+    "enabled": true
+  },
+  {
+    "id": "g-9",
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
+    "alt": {
+      "en": "Clean luxury car front after full detail",
+      "es": "Frente de auto de lujo limpio tras detallado completo"
+    },
+    "category": "Headlights",
+    "order": 9,
     "enabled": true
   }
 ]

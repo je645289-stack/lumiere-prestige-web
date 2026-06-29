@@ -47,7 +47,8 @@ export function buildMetadata(config: SiteConfig, page?: {
       url,
       siteName: config.businessName,
       images: [{ url: config.seo.ogImage, width: 1200, height: 630 }],
-      locale: "es_MX",
+      locale: "en_US",
+      alternateLocale: ["es_ES"],
       type: "website" as const,
     },
     twitter: {

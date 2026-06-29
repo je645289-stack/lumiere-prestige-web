@@ -1,112 +1,76 @@
+"use client";
+
 import Link from "next/link";
-import {
-  Instagram,
-  Facebook,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-  MessageCircle,
-} from "lucide-react";
+import { Instagram, Facebook, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import type { SiteConfig } from "@/types";
 import { getWhatsAppLink, getPhoneLink } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n";
 
 export function Footer({ config }: { config: SiteConfig }) {
   const currentYear = new Date().getFullYear();
+  const { t, l } = useLanguage();
+  const [first, ...rest] = config.businessName.split(" ");
+
+  const quickLinks = [
+    { href: "/#servicios", key: "nav.services" },
+    { href: "/#galeria", key: "nav.gallery" },
+    { href: "/#promociones", key: "nav.promotions" },
+    { href: "/#testimonios", key: "nav.testimonials" },
+    { href: "/#faq", key: "faq.title" },
+    { href: "/#contacto", key: "nav.contact" },
+  ];
 
   return (
     <footer className="border-t border-brand-border bg-brand-darker">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="font-display text-xl font-bold text-brand-cream">
-              {config.businessName}
+            <h3 className="font-display text-2xl tracking-wide text-brand-cream">
+              {first} <span className="text-brand-red">{rest.join(" ")}</span>
             </h3>
-            <p className="mt-3 text-sm text-brand-muted leading-relaxed">
-              {config.tagline}
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-brand-muted">{t("footer.tagline")}</p>
             <div className="mt-6 flex gap-4">
-              <a
-                href={config.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-muted hover:text-brand-gold transition-colors"
-                aria-label="Instagram"
-              >
+              <a href={config.social.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-muted transition-colors hover:text-brand-red" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a
-                href={config.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-muted hover:text-brand-gold transition-colors"
-                aria-label="Facebook"
-              >
+              <a href={config.social.facebook} target="_blank" rel="noopener noreferrer" className="text-brand-muted transition-colors hover:text-brand-red" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a
-                href={config.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-muted hover:text-brand-gold transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href={getWhatsAppLink(config.contact.whatsapp)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-muted hover:text-brand-gold transition-colors"
-                aria-label="WhatsApp"
-              >
+              <a href={getWhatsAppLink(config.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="text-brand-muted transition-colors hover:text-brand-red" aria-label="WhatsApp">
                 <MessageCircle className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold text-brand-cream">Enlaces rápidos</h4>
+            <h4 className="mb-4 font-heading font-semibold text-brand-cream">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2 text-sm">
-              {[
-                { href: "#servicios", label: "Servicios" },
-                { href: "#catalogo", label: "Catálogo" },
-                { href: "#galeria", label: "Galería" },
-                { href: "#blog", label: "Blog" },
-                { href: "#faq", label: "FAQ" },
-                { href: "#contacto", label: "Contacto" },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-brand-muted hover:text-brand-gold transition-colors">
-                    {link.label}
-                  </a>
+                  <Link href={link.href} className="text-brand-muted transition-colors hover:text-brand-red">
+                    {t(link.key)}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold text-brand-cream">Contacto</h4>
+            <h4 className="mb-4 font-heading font-semibold text-brand-cream">{t("footer.contact")}</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-brand-muted">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                 {config.contact.address}, {config.contact.city}
               </li>
               <li>
-                <a
-                  href={getPhoneLink(config.contact.phone)}
-                  className="flex items-center gap-2 text-brand-muted hover:text-brand-gold transition-colors"
-                >
-                  <Phone className="h-4 w-4 text-brand-gold" />
+                <a href={getPhoneLink(config.contact.phone)} className="flex items-center gap-2 text-brand-muted transition-colors hover:text-brand-red">
+                  <Phone className="h-4 w-4 text-brand-red" />
                   {config.contact.phone}
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${config.contact.email}`}
-                  className="flex items-center gap-2 text-brand-muted hover:text-brand-gold transition-colors"
-                >
-                  <Mail className="h-4 w-4 text-brand-gold" />
+                <a href={`mailto:${config.contact.email}`} className="flex items-center gap-2 break-all text-brand-muted transition-colors hover:text-brand-red">
+                  <Mail className="h-4 w-4 shrink-0 text-brand-red" />
                   {config.contact.email}
                 </a>
               </li>
@@ -114,34 +78,28 @@ export function Footer({ config }: { config: SiteConfig }) {
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold text-brand-cream">Horario</h4>
+            <h4 className="mb-4 font-heading font-semibold text-brand-cream">{t("footer.hours")}</h4>
             <ul className="space-y-2 text-sm text-brand-muted">
-              {config.contact.schedule.map((s) => (
-                <li key={s.day}>
-                  <span className="text-brand-cream">{s.day}:</span> {s.hours}
+              {config.contact.schedule.map((s, i) => (
+                <li key={i}>
+                  <span className="text-brand-cream">{l(s.day)}:</span> {s.hours}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 rounded-lg border border-brand-gold/20 bg-brand-gold/5 p-4">
-              <p className="text-xs text-brand-muted">
-                Incluye {config.support.supportDays} días de soporte,{" "}
-                {config.support.changeRounds} rondas de cambios y capacitación personalizada.
-              </p>
-            </div>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-brand-border pt-8 md:flex-row">
           <p className="text-sm text-brand-muted">
-            &copy; {currentYear} {config.businessName}. Todos los derechos reservados.
+            &copy; {currentYear} {config.businessName}. {t("footer.rights")}
           </p>
           <div className="flex gap-6 text-sm">
-            <Link href="/admin" className="text-brand-muted hover:text-brand-gold transition-colors">
-              Panel Admin
+            <Link href="/admin" className="text-brand-muted transition-colors hover:text-brand-red">
+              {t("footer.admin")}
             </Link>
-            <a href="#inicio" className="text-brand-muted hover:text-brand-gold transition-colors">
-              Volver arriba
-            </a>
+            <Link href="/#inicio" className="text-brand-muted transition-colors hover:text-brand-red">
+              {t("footer.top")}
+            </Link>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ export default async function sitemap() {
   const { blogPosts } = await getSiteData();
   const baseUrl = getSiteUrl();
 
-  const staticPages = ["", "/servicios", "/catalogo", "/blog", "/checkout"].map((path) => ({
+  const staticPages = ["", "/servicios", "/blog"].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

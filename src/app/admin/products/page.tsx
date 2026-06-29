@@ -1,27 +1,27 @@
 import { GenericListAdmin } from "@/components/admin/GenericListAdmin";
 
-export default function ProductsAdmin() {
+export default function PromotionsAdmin() {
   return (
     <GenericListAdmin
       contentType="products"
-      title="Catálogo de Productos"
-      description="Agrega, edita, elimina productos y precios"
-      addLabel="Agregar producto"
+      title="Promociones"
+      description="Add, edit and remove promotions (EN/ES)"
+      addLabel="Add promotion"
       defaultItem={{
-        name: "Nuevo producto",
-        description: "",
+        name: { en: "New promotion", es: "Nueva promoción" },
+        description: { en: "", es: "" },
         image: "",
-        price: "$0 MXN",
+        badge: "OFFER",
         category: "General",
         enabled: true,
         order: 1,
       }}
       fields={[
-        { key: "name", label: "Nombre" },
-        { key: "category", label: "Categoría" },
-        { key: "price", label: "Precio" },
-        { key: "description", label: "Descripción", type: "textarea", colSpan: true },
-        { key: "image", label: "Imagen", type: "image", colSpan: true },
+        { key: "name", label: "Title / Título", type: "localized", colSpan: true },
+        { key: "badge", label: "Badge (e.g. 20% OFF)" },
+        { key: "category", label: "Category / Categoría" },
+        { key: "description", label: "Description / Descripción", type: "localized-textarea", colSpan: true },
+        { key: "image", label: "Image / Imagen", type: "image", colSpan: true },
       ]}
     />
   );

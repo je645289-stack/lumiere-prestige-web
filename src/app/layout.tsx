@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { getSiteData } from "@/lib/site-data";
 import { buildMetadata, buildLocalBusinessSchema } from "@/lib/seo";
 import { AnalyticsScripts } from "@/components/integrations/AnalyticsScripts";
+import { LanguageProvider } from "@/lib/i18n";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,11 +12,25 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
+
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  weight: "400",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0f",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getSiteData();
@@ -31,7 +46,10 @@ export default async function RootLayout({
   const schema = buildLocalBusinessSchema(config);
 
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${montserrat.variable} ${bebas.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -40,7 +58,7 @@ export default async function RootLayout({
       </head>
       <body className="font-sans">
         <AnalyticsScripts config={config} />
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

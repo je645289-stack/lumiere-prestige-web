@@ -1,51 +1,66 @@
 [
   {
-    "id": "test-1",
-    "name": "María González",
-    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
-    "comment": "Una experiencia absolutamente transformadora. El equipo de Lumière Prestige superó todas mis expectativas. La atención al detalle y el profesionalismo son incomparables. Regreso cada mes sin falta.",
+    "id": "t-1",
+    "name": "Michael R.",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+    "comment": {
+      "en": "Albert made my car look brand new. The paint correction removed years of swirl marks. Absolutely worth it!",
+      "es": "Albert dejó mi auto como nuevo. La corrección de pintura eliminó años de remolinos. ¡Vale totalmente la pena!"
+    },
     "rating": 5,
-    "service": "Experiencia Wellness",
+    "service": "Paint Correction",
     "enabled": true,
     "order": 1
   },
   {
-    "id": "test-2",
-    "name": "Carlos Mendoza",
-    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-    "comment": "Contraté el Programa Elite para mi empresa y los resultados fueron extraordinarios. El ROI en bienestar corporativo se reflejó en productividad y satisfacción del equipo. Altamente recomendado.",
+    "id": "t-2",
+    "name": "Jessica L.",
+    "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    "comment": {
+      "en": "The ceramic coating is incredible — water just slides right off and it still shines months later. Highly recommend.",
+      "es": "El recubrimiento cerámico es increíble: el agua resbala y sigue brillando meses después. Muy recomendado."
+    },
     "rating": 5,
-    "service": "Eventos Corporativos",
+    "service": "Ceramic Coating",
     "enabled": true,
     "order": 2
   },
   {
-    "id": "test-3",
-    "name": "Ana Lucía Rivera",
-    "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
-    "comment": "La consultoría premium cambió mi perspectiva completamente. Recibí un plan personalizado que realmente funciona. El seguimiento post-sesión demuestra el compromiso genuino con los resultados.",
+    "id": "t-3",
+    "name": "David M.",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    "comment": {
+      "en": "Professional, on time and detail-obsessed. My interior has never been this clean. Great local business in Norwalk.",
+      "es": "Profesional, puntual y obsesionado con el detalle. Mi interior nunca estuvo tan limpio. Gran negocio local en Norwalk."
+    },
     "rating": 5,
-    "service": "Consultoría Premium",
+    "service": "Interior Detailing",
     "enabled": true,
     "order": 3
   },
   {
-    "id": "test-4",
-    "name": "Roberto Sánchez",
-    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
-    "comment": "Como miembro VIP, puedo decir que vale cada peso. La atención personalizada, los horarios flexibles y la calidad excepcional hacen de Lumière Prestige mi primera opción siempre.",
+    "id": "t-4",
+    "name": "Ashley T.",
+    "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+    "comment": {
+      "en": "Booked the mobile service and they came right to my driveway. Convenient, friendly and the results were stunning.",
+      "es": "Reservé el servicio a domicilio y vinieron hasta mi entrada. Cómodo, amable y los resultados fueron impresionantes."
+    },
     "rating": 5,
-    "service": "Asesoría VIP",
+    "service": "Mobile Detailing",
     "enabled": true,
     "order": 4
   },
   {
-    "id": "test-5",
-    "name": "Valentina Ortiz",
-    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
-    "comment": "El Programa de Transformación Integral de 12 semanas fue la mejor inversión que he hecho en mí misma. Resultados reales, equipo profesional y un ambiente que transmite lujo y calma.",
+    "id": "t-5",
+    "name": "Carlos G.",
+    "photo": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&q=80",
+    "comment": {
+      "en": "Mis faros se veían como nuevos después de la restauración. Excelente atención y precio justo. ¡Volveré!",
+      "es": "Mis faros se veían como nuevos después de la restauración. Excelente atención y precio justo. ¡Volveré!"
+    },
     "rating": 5,
-    "service": "Transformación Integral",
+    "service": "Headlight Restoration",
     "enabled": true,
     "order": 5
   }

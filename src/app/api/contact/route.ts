@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const runtime = "nodejs";
+
 const contactSchema = z.object({
   name: z.string().min(1),
-  email: z.string().email(),
+  email: z.string().email().optional().or(z.literal("")),
   phone: z.string().optional(),
+  vehicle: z.string().optional(),
   service: z.string().optional(),
-  message: z.string().min(1),
+  datetime: z.string().optional(),
+  type: z.string().optional(),
+  message: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -14,10 +19,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
-    const contactEmail = process.env.CONTACT_EMAIL || "contacto@lumiereprestige.com";
+    const contactEmail =
+      process.env.CONTACT_EMAIL || "albertautodetailing2024@gmail.com";
 
-    // Log submission (replace with email service like Resend/SendGrid in production)
-    console.log("[CONTACT FORM]", {
+    // Log submission (replace with an email service like Resend/SendGrid in production)
+    console.log("[ALBERT AUTO DETAILING — LEAD]", {
       to: contactEmail,
       ...data,
       timestamp: new Date().toISOString(),
@@ -28,9 +34,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Mensaje recibido correctamente",
+      message: "Request received successfully",
     });
   } catch {
-    return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 }

@@ -1,33 +1,49 @@
 [
   {
-    "id": "step-1",
+    "id": "p-1",
     "step": 1,
-    "title": "Consulta Inicial",
-    "description": "Agenda tu consulta gratuita donde nuestros expertos evalúan tus necesidades, objetivos y expectativas para diseñar la experiencia perfecta.",
+    "title": { "en": "Contact Us", "es": "Contáctanos" },
+    "description": {
+      "en": "Reach out by WhatsApp, phone or our quote form. Tell us about your vehicle and what you need.",
+      "es": "Escríbenos por WhatsApp, llámanos o usa nuestro formulario. Cuéntanos sobre tu vehículo y lo que necesitas."
+    },
+    "icon": "MessageCircle",
     "order": 1,
     "enabled": true
   },
   {
-    "id": "step-2",
+    "id": "p-2",
     "step": 2,
-    "title": "Plan Personalizado",
-    "description": "Recibe un plan a medida con servicios, productos y cronograma optimizado para maximizar tus resultados de forma eficiente.",
+    "title": { "en": "Free Inspection", "es": "Inspección Gratis" },
+    "description": {
+      "en": "We assess your vehicle's condition and recommend the right services with a transparent quote.",
+      "es": "Evaluamos el estado de tu vehículo y recomendamos los servicios ideales con una cotización transparente."
+    },
+    "icon": "Search",
     "order": 2,
     "enabled": true
   },
   {
-    "id": "step-3",
+    "id": "p-3",
     "step": 3,
-    "title": "Experiencia Premium",
-    "description": "Disfruta de tu servicio en nuestras instalaciones de lujo con atención dedicada de principio a fin por especialistas certificados.",
+    "title": { "en": "Professional Service", "es": "Servicio Profesional" },
+    "description": {
+      "en": "Our certified technicians get to work using premium products and proven detailing techniques.",
+      "es": "Nuestros técnicos certificados trabajan con productos premium y técnicas de detallado comprobadas."
+    },
+    "icon": "Sparkles",
     "order": 3,
     "enabled": true
   },
   {
-    "id": "step-4",
+    "id": "p-4",
     "step": 4,
-    "title": "Seguimiento Continuo",
-    "description": "Monitoreamos tu progreso con check-ins regulares, ajustes al plan y soporte disponible para garantizar resultados duraderos.",
+    "title": { "en": "Pick Up Shining", "es": "Recoge tu Auto Brillando" },
+    "description": {
+      "en": "Drive away with a vehicle that looks and feels brand new — protected and gleaming.",
+      "es": "Llévate un vehículo que luce y se siente como nuevo: protegido y reluciente."
+    },
+    "icon": "Car",
     "order": 4,
     "enabled": true
   }

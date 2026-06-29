@@ -9,14 +9,17 @@ import {
   AdminToggle,
   saveContent,
   ImageUpload,
+  LocalizedInput,
 } from "@/components/admin/AdminForm";
 import { Button } from "@/components/ui/Button";
 import { generateId } from "@/lib/utils";
+import { localize } from "@/lib/i18n";
+import type { LocalizedString } from "@/types";
 
 type FieldDef = {
   key: string;
   label: string;
-  type?: "text" | "textarea" | "number" | "image";
+  type?: "text" | "textarea" | "number" | "image" | "localized" | "localized-textarea";
   colSpan?: boolean;
 };
 
@@ -67,7 +70,7 @@ export function GenericListAdmin({
   return (
     <div className="flex min-h-screen bg-brand-dark">
       <AdminSidebar />
-      <main className="ml-64 flex-1 p-8">
+      <main className="flex-1 p-4 pt-20 lg:ml-64 lg:p-8 lg:pt-8">
         <SaveBar onSave={() => saveContent(contentType, items)} />
 
         <div className="mb-6 flex items-center justify-between">
@@ -88,7 +91,8 @@ export function GenericListAdmin({
             >
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-sm text-brand-muted">
-                  {fields[0]?.label}: {String(item[fields[0]?.key] || "")}
+                  {fields[0]?.label}:{" "}
+                  {localize(item[fields[0]?.key] as LocalizedString, "en") || ""}
                 </span>
                 <div className="flex items-center gap-3">
                   {"enabled" in item && (
@@ -118,6 +122,14 @@ export function GenericListAdmin({
                         label={field.label}
                         value={String(item[field.key] || "")}
                         onChange={(v) => updateItem(item.id as string, field.key, v)}
+                      />
+                    ) : field.type === "localized" ||
+                      field.type === "localized-textarea" ? (
+                      <LocalizedInput
+                        label={field.label}
+                        value={item[field.key] as LocalizedString}
+                        onChange={(v) => updateItem(item.id as string, field.key, v)}
+                        rows={field.type === "localized-textarea" ? 3 : undefined}
                       />
                     ) : (
                       <AdminInput

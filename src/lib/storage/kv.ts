@@ -17,20 +17,27 @@ export interface KVStore {
 }
 
 async function getCloudflareKV(): Promise<KVStore> {
-  const { getCloudflareContext } = await import("@opennextjs/cloudflare");
-  const { env } = await getCloudflareContext({ async: true });
-  const kv = (env as unknown as { CMS_KV?: KVNamespace }).CMS_KV;
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const { env } = await getCloudflareContext({ async: true });
+    const kv = (env as unknown as { CMS_KV?: KVNamespace }).CMS_KV;
 
-  if (!kv) {
-    // Binding missing — degrade gracefully to the filesystem fallback.
+    if (!kv) {
+      // Binding missing — degrade gracefully to the filesystem fallback.
+      return memoryKV;
+    }
+
+    return {
+      get: (key) => kv.get(key),
+      put: (key, value) => kv.put(key, value),
+      delete: (key) => kv.delete(key),
+    };
+  } catch {
+    // No Cloudflare worker context available (e.g. plain `npm start` on Node,
+    // or `next start`). Fall back to the filesystem/JSON store so the site
+    // still renders instead of throwing a 500 on every page.
     return memoryKV;
   }
-
-  return {
-    get: (key) => kv.get(key),
-    put: (key, value) => kv.put(key, value),
-    delete: (key) => kv.delete(key),
-  };
 }
 
 export async function getKV(): Promise<KVStore> {

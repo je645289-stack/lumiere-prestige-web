@@ -12,10 +12,13 @@ export async function POST(request: NextRequest) {
 
     if (!apiKey) {
       const autoReplies: Record<string, string> = {
-        horario: "Nuestro horario es de Lunes a Viernes 9AM-8PM, Sábado 10AM-6PM, Domingo 11AM-4PM.",
-        precio: "Los precios varían según el servicio. Visita nuestro catálogo o contáctanos para una cotización.",
-        reservar: "Puedes reservar desde la sección de contacto o por WhatsApp.",
-        ubicacion: "Estamos en Av. Presidente Masaryk 123, Polanco, Ciudad de México.",
+        hour: "We're open Monday-Friday 8AM-6PM, Saturday 9AM-5PM, Sunday by appointment.",
+        horario: "Atendemos de Lunes a Viernes 8AM-6PM, Sábado 9AM-5PM, Domingo con cita.",
+        price: "Prices vary by service and vehicle. Contact us for a free, personalized quote.",
+        precio: "Los precios varían según el servicio y el vehículo. Contáctanos para una cotización gratis.",
+        book: "You can book through the contact form, by WhatsApp or by calling us.",
+        location: "We're located at 12 Jenny Jenks St, Norwalk, CT 06851.",
+        ubicacion: "Estamos en 12 Jenny Jenks St, Norwalk, CT 06851.",
       };
 
       const lower = message.toLowerCase();
@@ -26,7 +29,8 @@ export async function POST(request: NextRequest) {
       }
 
       return NextResponse.json({
-        reply: "Gracias por tu mensaje. Un especialista te contactará pronto. También puedes escribirnos por WhatsApp.",
+        reply:
+          "Thanks for your message! For personalized help, reach us on WhatsApp or call us. / ¡Gracias! Para atención personalizada, escríbenos por WhatsApp o llámanos.",
       });
     }
 
@@ -42,7 +46,7 @@ export async function POST(request: NextRequest) {
           {
             role: "system",
             content:
-              "Eres el asistente virtual de Lumière Prestige, un negocio premium de servicios de lujo. Responde de forma profesional, elegante y concisa en español.",
+              "You are the virtual assistant for Albert Auto Detailing, a premium auto detailing business in Norwalk, Connecticut. Answer professionally and concisely. Reply in the same language the user writes in (English or Spanish). Never quote prices; invite the user to request a free quote.",
           },
           { role: "user", content: message },
         ],

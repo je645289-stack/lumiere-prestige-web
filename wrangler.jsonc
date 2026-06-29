@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "lumiere-prestige-web",
+  "name": "albert-auto-detailing",
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": ["nodejs_compat"],
@@ -11,13 +11,13 @@
   "kv_namespaces": [
     {
       "binding": "CMS_KV",
-      "id": "REEMPLAZAR_CON_ID_REAL"
+      "id": "REPLACE_WITH_REAL_ID"
     }
   ],
   "r2_buckets": [
     {
       "binding": "CMS_R2",
-      "bucket_name": "lumiere-prestige-uploads"
+      "bucket_name": "albert-auto-detailing-uploads"
     }
   ]
 }

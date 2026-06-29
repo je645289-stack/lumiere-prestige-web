@@ -27,23 +27,23 @@ export default async function AdminDashboard() {
   const gallery = await readData<unknown[]>("gallery");
 
   const stats = [
-    { label: "Servicios", count: services.length, href: "/admin/services", icon: Briefcase },
-    { label: "Productos", count: products.length, href: "/admin/products", icon: ShoppingBag },
-    { label: "Testimonios", count: testimonials.length, href: "/admin/testimonials", icon: MessageSquare },
-    { label: "Artículos", count: blogPosts.length, href: "/admin/blog", icon: Newspaper },
-    { label: "Galería", count: gallery.length, href: "/admin/gallery", icon: Image },
+    { label: "Services", count: services.length, href: "/admin/services", icon: Briefcase },
+    { label: "Promotions", count: products.length, href: "/admin/products", icon: ShoppingBag },
+    { label: "Testimonials", count: testimonials.length, href: "/admin/testimonials", icon: MessageSquare },
+    { label: "Blog posts", count: blogPosts.length, href: "/admin/blog", icon: Newspaper },
+    { label: "Gallery", count: gallery.length, href: "/admin/gallery", icon: Image },
   ];
 
   return (
     <div className="flex min-h-screen bg-brand-dark">
       <AdminSidebar />
-      <main className="ml-64 flex-1 p-8">
+      <main className="flex-1 p-4 pt-20 lg:ml-64 lg:p-8 lg:pt-8">
         <div className="mb-8">
-          <h1 className="font-display text-3xl font-bold text-brand-cream">
-            Bienvenido al Panel
+          <h1 className="font-display text-3xl text-brand-cream">
+            Welcome to the Admin Panel
           </h1>
           <p className="mt-2 text-brand-muted">
-            Gestiona todo el contenido de {config.businessName} sin tocar código
+            Manage all content for {config.businessName} — no code required.
           </p>
         </div>
 
@@ -67,21 +67,21 @@ export default async function AdminDashboard() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-xl border border-brand-border bg-brand-surface p-6">
-            <h2 className="mb-4 font-display text-xl font-semibold text-brand-cream">
-              Acciones rápidas
+            <h2 className="mb-4 font-display text-xl text-brand-cream">
+              Quick actions
             </h2>
             <div className="space-y-2">
               {[
-                { href: "/admin/site-config", label: "Editar textos del sitio", icon: Settings },
-                { href: "/admin/services", label: "Gestionar servicios", icon: Briefcase },
-                { href: "/admin/products", label: "Gestionar catálogo", icon: ShoppingBag },
-                { href: "/", label: "Ver sitio web", icon: ExternalLink },
+                { href: "/admin/site-config", label: "Edit site content", icon: Settings },
+                { href: "/admin/services", label: "Manage services", icon: Briefcase },
+                { href: "/admin/products", label: "Manage promotions", icon: ShoppingBag },
+                { href: "/", label: "View website", icon: ExternalLink },
               ].map((action) => (
                 <Link
                   key={action.href}
                   href={action.href}
                   target={action.href === "/" ? "_blank" : undefined}
-                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-brand-muted hover:bg-brand-dark hover:text-brand-gold transition-colors"
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-brand-muted hover:bg-brand-dark hover:text-brand-red transition-colors"
                 >
                   <action.icon className="h-4 w-4" />
                   {action.label}
@@ -90,21 +90,18 @@ export default async function AdminDashboard() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-6">
-            <h2 className="mb-4 font-display text-xl font-semibold text-brand-cream">
-              Tu paquete Premium incluye
+          <div className="rounded-xl border border-brand-red/20 bg-brand-red/5 p-6">
+            <h2 className="mb-4 font-display text-xl text-brand-cream">
+              Everything is editable
             </h2>
             <ul className="space-y-3 text-sm text-brand-muted">
-              <li>✓ {config.support.supportDays} días de soporte post-entrega</li>
-              <li>✓ {config.support.changeRounds} rondas de cambios incluidas</li>
-              <li>✓ Capacitación personalizada del panel</li>
-              <li>✓ Edición completa sin conocimientos técnicos</li>
-              <li>✓ SEO Premium y optimización de rendimiento</li>
-              <li>✓ Integraciones preparadas (pagos, chat, analytics)</li>
+              <li>✓ Bilingual content (English / Spanish)</li>
+              <li>✓ Hero, services, gallery, promotions & more</li>
+              <li>✓ Testimonials, FAQ and process steps</li>
+              <li>✓ SEO, analytics and integrations</li>
+              <li>✓ Premium performance and responsive design</li>
+              <li>✓ Changes go live instantly — no restart needed</li>
             </ul>
-            <p className="mt-4 text-xs text-brand-muted">
-              {config.support.trainingDescription}
-            </p>
           </div>
         </div>
       </main>
