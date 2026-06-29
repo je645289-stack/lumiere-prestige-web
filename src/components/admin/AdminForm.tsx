@@ -92,7 +92,7 @@ export function SaveBar({ onSave, label = "Guardar cambios" }: SaveBarProps) {
   };
 
   return (
-    <div className="sticky top-0 z-20 -mx-8 mb-6 flex items-center justify-between border-b border-brand-border bg-brand-dark/95 px-8 py-4 backdrop-blur-sm">
+    <div className="sticky top-14 z-20 -mx-4 mb-6 flex items-center justify-between gap-3 border-b border-brand-border bg-brand-dark/95 px-4 py-4 backdrop-blur-sm lg:-mx-8 lg:top-0 lg:px-8">
       <div>
         {status === "saved" && (
           <span className="flex items-center gap-2 text-sm text-green-400">

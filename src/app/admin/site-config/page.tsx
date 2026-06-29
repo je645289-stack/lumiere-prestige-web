@@ -24,7 +24,7 @@ export default function SiteConfigAdmin() {
     return (
       <div className="flex min-h-screen bg-brand-dark">
         <AdminSidebar />
-        <main className="ml-64 flex-1 p-8">
+        <main className="flex-1 p-4 pt-20 lg:ml-64 lg:p-8 lg:pt-8">
           <p className="text-brand-muted">Loading...</p>
         </main>
       </div>
@@ -49,7 +49,7 @@ export default function SiteConfigAdmin() {
   return (
     <div className="flex min-h-screen bg-brand-dark">
       <AdminSidebar />
-      <main className="ml-64 flex-1 p-8">
+      <main className="flex-1 p-4 pt-20 lg:ml-64 lg:p-8 lg:pt-8">
         <SaveBar onSave={() => saveContent("site-config", config)} />
 
         <h1 className="mb-6 font-display text-2xl text-brand-cream">General Settings</h1>

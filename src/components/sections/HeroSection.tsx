@@ -55,7 +55,7 @@ export function HeroSection({ config }: { config: SiteConfig }) {
             {l(hero.badge)}
           </span>
 
-          <h1 className="font-display text-5xl leading-none text-brand-cream sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="font-display text-4xl leading-[1.05] text-brand-cream sm:text-6xl md:text-7xl lg:text-8xl">
             {l(hero.title)}
           </h1>
 

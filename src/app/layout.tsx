@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { getSiteData } from "@/lib/site-data";
@@ -25,6 +25,12 @@ const bebas = Bebas_Neue({
   weight: "400",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0f",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const { config } = await getSiteData();

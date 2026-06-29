@@ -37,7 +37,7 @@ export default async function AdminDashboard() {
   return (
     <div className="flex min-h-screen bg-brand-dark">
       <AdminSidebar />
-      <main className="ml-64 flex-1 p-8">
+      <main className="flex-1 p-4 pt-20 lg:ml-64 lg:p-8 lg:pt-8">
         <div className="mb-8">
           <h1 className="font-display text-3xl text-brand-cream">
             Welcome to the Admin Panel
