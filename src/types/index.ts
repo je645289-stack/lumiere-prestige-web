@@ -17,6 +17,8 @@ export interface SiteConfig {
     primaryButton: { text: LocalizedString; href: string };
     secondaryButton: { text: LocalizedString; href: string };
     image: string;
+    /** Optional background video URL (e.g. /videos/hero.mp4). Falls back to `image`. */
+    video?: string;
     imageAlt: LocalizedString;
   };
   about: {

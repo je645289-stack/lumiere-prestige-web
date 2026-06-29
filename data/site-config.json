@@ -25,6 +25,7 @@
     "primaryButton": { "text": { "en": "Get a Free Quote", "es": "Cotización Gratis" }, "href": "whatsapp" },
     "secondaryButton": { "text": { "en": "Call Now", "es": "Llamar Ahora" }, "href": "call" },
     "image": "https://images.unsplash.com/photo-1605164599901-db7f68c1b1d3?w=1600&q=80",
+    "video": "/videos/hero.mp4",
     "imageAlt": {
       "en": "Luxury car being professionally detailed",
       "es": "Auto de lujo siendo detallado profesionalmente"

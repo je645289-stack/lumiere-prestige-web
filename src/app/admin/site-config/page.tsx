@@ -84,7 +84,12 @@ export default function SiteConfigAdmin() {
                 <LocalizedInput label="Secondary button text" value={config.hero.secondaryButton.text} onChange={(v) => setPath("hero.secondaryButton.text", v)} />
                 <AdminInput label="Secondary button link (whatsapp / call / url)" value={config.hero.secondaryButton.href} onChange={(v) => setPath("hero.secondaryButton.href", v)} />
               </div>
-              <ImageUpload label="Hero image" value={config.hero.image} onChange={(v) => setPath("hero.image", v)} />
+              <ImageUpload label="Hero image (poster / fallback)" value={config.hero.image} onChange={(v) => setPath("hero.image", v)} />
+              <AdminInput
+                label="Hero background video URL (optional, e.g. /videos/hero.mp4 — leave empty to use the image)"
+                value={config.hero.video || ""}
+                onChange={(v) => setPath("hero.video", v)}
+              />
             </div>
           </section>
 

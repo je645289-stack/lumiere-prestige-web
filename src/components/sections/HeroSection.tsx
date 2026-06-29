@@ -28,14 +28,28 @@ export function HeroSection({ config }: { config: SiteConfig }) {
       containerClassName="relative z-10"
     >
       <div className="absolute inset-0 z-0">
-        <Image
-          src={hero.image}
-          alt={l(hero.imageAlt)}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        {hero.video ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src={hero.video}
+            poster={hero.image}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-label={l(hero.imageAlt)}
+          />
+        ) : (
+          <Image
+            src={hero.image}
+            alt={l(hero.imageAlt)}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/40" />
       </div>
